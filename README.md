@@ -1,2 +1,31 @@
 # vdrOnOdroidN2Plus
 Setup VDR on ODROID N2+
+
+Installation on an SD card, is sufficient from my point of view if you have the data (recordings, ...) on a Sever/NAS. Otherwise, the installation on an SSD works in principle the same.
+
+# Prepare SD card 
+
+## CoreELEC image
+### Download CoreELEC image
+```
+wget https://github.com/CoreELEC/CoreELEC/releases/download/19.5-Matrix_rc3/CoreELEC-Amlogic-ng.arm-19.5-Matrix_rc3-Odroid_N2.img.gz
+```
+and flush to SD card.
+Now mount the data partition of the DS card to <your-moint-piont>
+
+## Download Ubutu image and uncompress
+```
+wget https://odroid.in/ubuntu_22.04lts/N2/ubuntu-22.04-4.9-minimal-odroid-n2-20220622.img.xz  
+unxz ubuntu-22.04-4.9-minimal-odroid-n2-20220622.img.xz
+```
+### Mount the Ubuntu image to /mnt
+Theretofore get the postion of the partition
+```
+fdisk -l ubuntu-22.04-4.9-minimal-odroid-n2-20220622.img | grep Linux
+ubuntu-22.04-4.9-minimal-odroid-n2-20220622.img2      264192 7944191  7680000  3,7G 83 Linux
+```
+Here 264192 blocks, now calculate the postion/offset in bytes: offset = 264192 * 512 = 135266304
+And mount it using this offset:
+```
+sudo mount -o loop,offset=135266304 ./ubuntu-22.04-4.9-minimal-odroid-n2-20220622.img /mnt
+```
