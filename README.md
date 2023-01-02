@@ -17,7 +17,7 @@ The scripts for building the environment and starting and stopping the services 
 wget https://github.com/CoreELEC/CoreELEC/releases/download/19.5-Matrix_rc3/CoreELEC-Amlogic-ng.arm-19.5-Matrix_rc3-Odroid_N2.img.gz
 ```
 and flush to SD card.
-Now mount the data partition of the DS card to '<your-coreelec-sd-moint-piont>'
+Now mount the data partition of the DS card to \<your-coreelec-sd-moint-piont\>
 
 ## Download Ubutu image and uncompress
 ```
