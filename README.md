@@ -3,7 +3,14 @@ Setup VDR on ODROID N2+
 
 Installation on an SD card, is sufficient from my point of view if you have the data (recordings, ...) on a Sever/NAS. Otherwise, the installation on an SSD works in principle the same.
 
-# Prepare SD card 
+CoreELEC is used as the base installation and the VDR is installes in a chrooted Ubuntu environment.
+The idea and procedure come from here from the VDR portal
+https://www.vdr-portal.de/forum/index.php?thread/135070-howto-installation-eines-vdr-innerhalb-von-coreelec-amlogic-only/&postID=1349603#post1349603
+
+Die Skripts zum Aufbau des Environment und Starten und Stoppen der Dienste sind neu. Die Kommunikation des chroot Environment mit der Basis Installation des CoreELEC und dem systemd basieren auf einer named Pipe.
+Der VDR wird mittels /etc/vdr/conf.d und  /etc/vdr/conf.avail eingerichtet, auf ein runvdr Skript wird verzichtet
+
+# 1 Prepare SD card
 
 ## CoreELEC image
 ### Download CoreELEC image
@@ -11,11 +18,11 @@ Installation on an SD card, is sufficient from my point of view if you have the 
 wget https://github.com/CoreELEC/CoreELEC/releases/download/19.5-Matrix_rc3/CoreELEC-Amlogic-ng.arm-19.5-Matrix_rc3-Odroid_N2.img.gz
 ```
 and flush to SD card.
-Now mount the data partition of the DS card to <your-moint-piont>
+Now mount the data partition of the DS card to <your-coreelec-sd-moint-piont>
 
 ## Download Ubutu image and uncompress
 ```
-wget https://odroid.in/ubuntu_22.04lts/N2/ubuntu-22.04-4.9-minimal-odroid-n2-20220622.img.xz  
+wget https://odroid.in/ubuntu_22.04lts/N2/ubuntu-22.04-4.9-minimal-odroid-n2-20220622.img.xz
 unxz ubuntu-22.04-4.9-minimal-odroid-n2-20220622.img.xz
 ```
 ### Mount the Ubuntu image to /mnt
@@ -28,4 +35,24 @@ Here 264192 blocks, now calculate the postion/offset in bytes: offset = 264192 *
 And mount it using this offset:
 ```
 sudo mount -o loop,offset=135266304 ./ubuntu-22.04-4.9-minimal-odroid-n2-20220622.img /mnt
+```
+### Copy the Ubuntu to the SD card below the CodeELEC installation
+mkdir <your-coreelec-sd-moint-piont>/storage
+```
+sudo cp -a /mnt/ <your-sd-moint-piont>/storage/UBUNTU/
+umount /mnt
+rm <your-sd-moint-piont>/storage/UBUNTU/aafirstboot
+rm <your-sd-moint-piont>/storage/UBUNTU/.first_boot
+umount <your-sd-moint-piont>
+
+# 2 First boot
+
+put the SD card into your ODROD N2+ and boot
+
+Use kodi to make the following settings
+```
+- Timezone
+- Tastatur
+- Sprache
+- WOL
 ```
