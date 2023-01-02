@@ -7,8 +7,7 @@ CoreELEC is used as the base installation and the VDR is installes in a chrooted
 The idea and procedure come from here from the VDR portal
 https://www.vdr-portal.de/forum/index.php?thread/135070-howto-installation-eines-vdr-innerhalb-von-coreelec-amlogic-only/&postID=1349603#post1349603
 
-Die Skripts zum Aufbau des Environment und Starten und Stoppen der Dienste sind neu. Die Kommunikation des chroot Environment mit der Basis Installation des CoreELEC und dem systemd basieren auf einer named Pipe.
-Der VDR wird mittels /etc/vdr/conf.d und  /etc/vdr/conf.avail eingerichtet, auf ein runvdr Skript wird verzichtet
+The scripts for building the environment and starting and stopping the services are new. The communication of the chroot Environment with the basis installation of the CoreELEC and the systemd are based on a named Pipe. The VDR is set up by means of /etc/vdr/conf.d and /etc/vdr/conf.avail, a runvdr script is omitted.
 
 # 1 Prepare SD card
 
