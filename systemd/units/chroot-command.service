@@ -1,0 +1,15 @@
+
+[Unit]
+
+Description=chroot commad service
+Requires=network-online.service
+After=network-online.service
+
+[Service]
+
+Type=simple
+ExecStart=/storage/bin/pread.sh /storage/chroot-commands.pipe
+
+[Install]
+
+WantedBy=multi-user.target

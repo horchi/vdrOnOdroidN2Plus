@@ -163,3 +163,42 @@ To show the plugin state ```vdrctl```
 
 Show how the VDR will be started with all his plugins and arguments
 ```vdr --show```
+
+Now leave the chroot ```exit``
+
+## Enable Services and re-boot
+```
+systemctl daemon-reload
+systemctl enable chroot-command.service
+systemctl enable vdr.service
+systemctl enable irexec.service
+systemctl enable ubuntu.service
+reboot
+```
+
+After reboot the VDR should run
+
+To use systemctl from the chroot environment the script systemctl.sh can be used. For example:
+
+```
+systemctl.sh status vdr
+● vdr.service - Video Disk Recorder
+Loaded: loaded (/storage/.config/system.d/vdr.service; enabled; vendor preset: disabled)
+Active: active (running) since Tue 2023-01-03 15:31:53 CET; 2min 37s ago
+Main PID: 3602 (vdr)
+Status: "Ready"
+Tasks: 26 (limit: 3686)
+Memory: 683.5M
+CGroup: /system.slice/vdr.service
+└─3602 /usr/bin/vdr
+
+Jan 03 15:33:44 uhdvdr vdr[3602]: epg2vdr: Got 0 images from database in 0 seconds (0 updates, 0 new) and created 0 links
+```
+or to restart
+```
+systemctl.sh restart vdr
+```
+....
+
+/storage/bin/ubuntu-init-user.sh
+~/.bash_user

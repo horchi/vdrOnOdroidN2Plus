@@ -1,0 +1,19 @@
+
+[Unit]
+
+Description=LIRC command handler
+Requires=eventlircd.service
+After=eventlircd.service
+StartLimitInterval=200
+StartLimitBurst=5
+
+[Service]
+
+Type=simple
+ExecStart=/usr/sbin/chroot /storage/UBUNTU /usr/bin/irexec /etc/lirc/lircrc
+Restart=on-failure
+RestartSec=5
+
+[Install]
+
+WantedBy=multi-user.target

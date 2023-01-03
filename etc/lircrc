@@ -1,0 +1,18 @@
+
+begin
+    prog = irexec
+    button = KEY_FAVORITES
+    config = /storage/bin/pwrite.sh "/storage/chroot-commands.pipe" "/storage/bin/toggle.sh toggle"
+end
+
+begin
+    prog = irexec
+    button = KEY_BRIGHTNESSUP
+    config = /storage/bin/lircrc.sh WUP
+end
+
+begin
+    prog = irexec
+    button = KEY_BRIGHTNESSDOWN
+    config = /storage/bin/lircrc.sh WDOWN
+end

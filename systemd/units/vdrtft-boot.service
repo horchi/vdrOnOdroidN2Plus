@@ -1,0 +1,16 @@
+
+[Unit]
+
+Description=Trigger boot of TFT Raspberry Pi by GPIO
+After=ubuntu.service
+
+[Service]
+
+Type=oneshot
+Environment="PYTHONPATH=$PYTHONPATH:/storage/.local/lib/python3.10/site-packages/"
+EnvironmentFile=-/storage/.config/default/vdrtft
+ExecStart=/usr/sbin/chroot /storage/UBUNTU /storage/bin/trigger-tft-boot.py ${TFT_HOST}
+
+[Install]
+
+WantedBy=multi-user.target

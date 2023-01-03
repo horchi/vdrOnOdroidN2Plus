@@ -1,0 +1,15 @@
+
+[Unit]
+
+Description=Trigger shutdown of TFT Raspberry Pi via ssh
+DefaultDependencies=no
+Before=shutdown.target
+
+[Service]
+
+Type=oneshot
+ExecStart=/storage/bin/trigger-tft-shutdown.sh
+
+[Install]
+
+WantedBy=shutdown.target

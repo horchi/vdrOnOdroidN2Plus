@@ -1,0 +1,17 @@
+
+[Unit]
+
+Description=Video Disk Recorder
+Requires=network-online.service
+After=network-online.service
+
+[Service]
+
+Type=notify
+ExecStart=/usr/sbin/chroot /storage/UBUNTU /usr/bin/vdr
+Restart=on-failure
+RestartPreventExitStatus=0 2
+
+[Install]
+
+WantedBy=multi-user.target
