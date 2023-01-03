@@ -65,7 +65,7 @@ Use kodi to make the following settings
 
 # 3 Prepare UBUNTU/chroot environment
 
-### setup name resolution for UBUNTU/chroot
+### Setup name resolution for UBUNTU/chroot
 
 Replace the IP with that of the name server to be used:
 ```
@@ -73,9 +73,64 @@ rm /storage/UBUNTU/etc/resolv.conf
 echo 'nameserver 192.168.200.101' > /storage/UBUNTU/etc/resolv.conf
 ```
 
-### get the unit file for the UBUNTU/chroot environment
+### Setup UBUNTU/chroot environment
 
+We fetch these files manually because we miss the git command under CoreELEC
 
+```
+mkdir /storage/scripts/
+curl -o /storage/.config/system.d/ubuntu.service https://github.com/horchi/vdrOnOdroidN2Plus/blob/main/systemd.units/ubuntu.service
+curl -o /storage/bin/ubuntu-init.sh https://github.com/horchi/vdrOnOdroidN2Plus/blob/main/scripts/ubuntu-init.sh
+curl -o /storage/bin/chg-ubuntu https://github.com/horchi/vdrOnOdroidN2Plus/blob/main/scripts/chg-ubuntu
+curl -o /storage/.profile https://github.com/horchi/vdrOnOdroidN2Plus/blob/main/env/.profile
+curl -o /storage/.bashrc https://github.com/horchi/vdrOnOdroidN2Plus/blob/main/env/.bashrc
+
+source .bashrc
+systemctl enable ubuntu.service
+systemctl start ubuntu.service      # start only once! Will be started automatically from the next boot.
+
+echo "source ~/.bashrc" > ~/.profile
+```
+
+Now we are prepared to use UBUNTU/chroot by calling
+```
+chg-ubuntu
+```
+
+### Setup the timezone for Ubuntu
+```
+dpkg-reconfigure tzdata
+```
+
+### Add VDR repositories from Alexander and Christian
+```
+apt install software-properties-common
+add-apt-repository ppa:seahawk1986-hotmail/jammy-main
+add-apt-repository ppa:ckone/jammy-vdr
+apt update
+apt dist-upgrade
+```
+
+### Now we install some essential packages as well as the VDR and some plugins
+
+Select the plugins below as you like
+```
+apt install libgl-dev libglu-dev libgles2-mesa-dev freeglut3-dev libglm-dev libavcodec-dev libdrm-dev libasound2-dev vdr-dev
+apt install htop aptitude telnet psmisc git
+apt install vdr vdrctl
+apt install vdr-plugin-skindesigner vdr-plugin-menuorg
+apt install vdr-plugin-epg2vdr vdr-plugin-scraper2vdr vdr-plugin-osd2web
+apt install vdr-plugin-satip vdr-plugin-remote
+apt install vdr-plugin-seduatmo vdr-plugin-squeezebox
+```
+
+Install the softhdodroid plugin
+```
+cd /storage/build/
+git clone https://github.com/jojo61/vdr-plugin-softhdodroid
+cd vdr-plugin-softhdodroid
+make clean all install
+```
 
 ### Install scripts and systemd unit files
 
@@ -86,3 +141,22 @@ git clone git@github.com:horchi/vdrOnOdroidN2Plus.git
 cd vdrOnOdroidN2Plus
 make install
 ```
+
+Now adjust the settings of the vdr and the plugins as you like
+```
+vdrctl edit vdr
+vdrctl edit <plugin name>
+```
+
+Enable the needed plugins
+```
+vdrctl enable softhdodroid
+vdrctl enable satip
+```
+To show the plugin state
+```
+vdrctl
+```
+
+Show how the VDR will be started with all his plugins and argumnets
+```vdr --show```
