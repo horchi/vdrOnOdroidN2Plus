@@ -93,10 +93,7 @@ systemctl start ubuntu.service      # start only once! Will be started automatic
 echo "source ~/.bashrc" > ~/.profile
 ```
 
-Now we are prepared to use UBUNTU/chroot by calling
-```
-chg-ubuntu
-```
+Now we are prepared to use UBUNTU/chroot by calling ```chg-ubuntu``` this command can always be used to get into the UBUNTU/chroot environment.
 
 ### Setup the timezone for Ubuntu
 ```
