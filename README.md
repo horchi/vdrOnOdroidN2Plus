@@ -94,7 +94,8 @@ echo "source ~/.bashrc" > ~/.profile
 ```
 
 Now we are prepared to use UBUNTU/chroot by calling ```chg-ubuntu``` this command can always be used to get into the UBUNTU/chroot environment.
-Change to the UBUNTU/chroot for the next steps!
+
+Now change to the UBUNTU/chroot to perform the next steps under UBUNTU!
 
 ### Setup the timezone for Ubuntu
 ```
