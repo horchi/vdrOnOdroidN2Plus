@@ -1,14 +1,18 @@
-# vdrOnOdroidN2Plus
-Setup VDR on ODROID N2+
+# Setup VDR on ODROID N2+
 
-Installation on an SD card, is sufficient from my point of view if you have the data (recordings, ...) on a Sever/NAS. Otherwise, the installation on an SSD works in principle the same.
+# Overview
 
 CoreELEC is used as the base installation, the VDR is installed in a chrooted Ubuntu environment.
 The idea and procedure come from here from the VDR portal
 https://www.vdr-portal.de/forum/index.php?thread/135070-howto-installation-eines-vdr-innerhalb-von-coreelec-amlogic-only/&postID=1349603#post1349603
 
-The scripts for building the environment and starting and stopping the services are new. The communication of the chroot Environment with the basis installation of the CoreELEC and the systemd are based on a named pipe. The VDR is set up using it's configuration in /etc/vdr/conf.d and /etc/vdr/conf.avail instead of a runvdr script.
+The communication of the chroot Environment with the basis installation of the CoreELEC and the systemd are based on a named pipe. The VDR is set up using it's configuration in /etc/vdr/conf.d and /etc/vdr/conf.avail instead of a runvdr script.
 For the VDR and the plugins the ready packages from the repositories of Alexander and Christian are used.
+
+Installation on an SD card as described below, is sufficient from my point of view if you have the data (recordings, ...) on a Sever/NAS.
+Otherwise, the installation on an SSD works in principle the same.
+
+With the setup/scripts described here it is possible to execute commands like systemctl directly from the UBUNTU/chroot environment on the CoreELEC
 
 # 1 Prepare SD card
 
@@ -93,7 +97,7 @@ systemctl start ubuntu.service      # start only once! Will be started automatic
 echo "source ~/.bashrc" > ~/.profile
 ```
 
-Now we are prepared to enter UBUNTU/chroot by just calling ```chg-ubuntu```, this command can always be used to get into the UBUNTU/chroot environment.
+Now we are prepared to enter UBUNTU/chroot just by calling ```chg-ubuntu```, this command can always be used to get into the UBUNTU/chroot environment.
 
 Now change to the UBUNTU/chroot to perform the next steps under UBUNTU!
 
