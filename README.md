@@ -42,6 +42,7 @@ And mount it using this offset:
 ```
 sudo mount -o loop,offset=135266304 ./ubuntu-22.04-4.9-minimal-odroid-n2-20220622.img /mnt
 ```
+Now we can access the filesystem of the image without flushing it to a card.
 ### Copy the Ubuntu to the SD card below the CodeELEC installation
 mkdir <your-coreelec-sd-moint-point>/storage
 ```
