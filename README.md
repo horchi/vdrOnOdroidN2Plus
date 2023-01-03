@@ -3,8 +3,7 @@
 # Overview
 
 CoreELEC is used as the base installation, the VDR is installed in a chrooted Ubuntu environment.
-The idea and procedure come from here from the VDR portal
-https://www.vdr-portal.de/forum/index.php?thread/135070-howto-installation-eines-vdr-innerhalb-von-coreelec-amlogic-only/&postID=1349603#post1349603
+The basic idea comes from here on the VDR portal https://www.vdr-portal.de/forum/index.php?thread/135070-howto-installation-eines-vdr-innerhalb-von-coreelec-amlogic-only/&postID=1349603#post1349603
 
 The communication of the chroot Environment with the basis installation of the CoreELEC and the systemd are based on a named pipe. The VDR is set up using it's configuration in /etc/vdr/conf.d and /etc/vdr/conf.avail instead of a runvdr script.
 For the VDR and the plugins the ready packages from the repositories of Alexander and Christian are used.
