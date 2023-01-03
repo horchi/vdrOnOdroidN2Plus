@@ -148,15 +148,13 @@ vdrctl edit vdr
 vdrctl edit <plugin name>
 ```
 
-Enable the needed plugins
+Enable/disable the pluginsas you like
 ```
 vdrctl enable softhdodroid
 vdrctl enable satip
+vdrctl disable remote
 ```
-To show the plugin state
-```
-vdrctl
-```
+To show the plugin state ```vdrctl```
 
 Show how the VDR will be started with all his plugins and argumnets
 ```vdr --show```
