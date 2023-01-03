@@ -44,8 +44,8 @@ sudo mount -o loop,offset=135266304 ./ubuntu-22.04-4.9-minimal-odroid-n2-2022062
 ```
 Now we can access the filesystem of the image without flushing it to a card.
 ### Copy the Ubuntu to the SD card below the CodeELEC installation
-mkdir <your-coreelec-sd-moint-point>/storage
 ```
+mkdir -p <your-coreelec-sd-moint-point>/storage
 sudo cp -a /mnt/ <your-sd-moint-point>/storage/UBUNTU/
 umount /mnt
 rm <your-sd-moint-point>/storage/UBUNTU/aafirstboot
