@@ -1,0 +1,15 @@
+
+[Unit]
+
+Description=Init chroot for UBUNTU
+Requires=network-online.service
+After=network-online.service
+
+[Service]
+
+Type=oneshot
+ExecStart=/storage/bin/ubuntu-init.sh
+
+[Install]
+
+WantedBy=multi-user.target

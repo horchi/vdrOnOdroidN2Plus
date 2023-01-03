@@ -53,7 +53,7 @@ umount <your-sd-moint-point>
 
 # 2 First boot
 
-put the SD card into your ODROD N2+ and boot
+Put the SD card into your ODROD N2+ and boot
 
 Use kodi to make the following settings
 ```
@@ -72,6 +72,10 @@ Replace the IP with that of the name server to be used:
 rm /storage/UBUNTU/etc/resolv.conf
 echo 'nameserver 192.168.200.101' > /storage/UBUNTU/etc/resolv.conf
 ```
+
+### get the unit file for the UBUNTU/chroot environment
+
+
 
 ### Install scripts and systemd unit files
 
