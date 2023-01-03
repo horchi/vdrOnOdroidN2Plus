@@ -3,11 +3,12 @@ Setup VDR on ODROID N2+
 
 Installation on an SD card, is sufficient from my point of view if you have the data (recordings, ...) on a Sever/NAS. Otherwise, the installation on an SSD works in principle the same.
 
-CoreELEC is used as the base installation and the VDR is installes in a chrooted Ubuntu environment.
+CoreELEC is used as the base installation, the VDR is installed in a chrooted Ubuntu environment.
 The idea and procedure come from here from the VDR portal
 https://www.vdr-portal.de/forum/index.php?thread/135070-howto-installation-eines-vdr-innerhalb-von-coreelec-amlogic-only/&postID=1349603#post1349603
 
 The scripts for building the environment and starting and stopping the services are new. The communication of the chroot Environment with the basis installation of the CoreELEC and the systemd are based on a named pipe. The VDR is set up using it's configuration in /etc/vdr/conf.d and /etc/vdr/conf.avail instead of a runvdr script.
+For the VDR and the plugins the ready packages from the repositories of Alexander and Christian are used.
 
 # 1 Prepare SD card
 
@@ -148,7 +149,7 @@ vdrctl edit vdr
 vdrctl edit <plugin name>
 ```
 
-Enable/disable the pluginsas you like
+Enable/disable the plugins as you like
 ```
 vdrctl enable softhdodroid
 vdrctl enable satip
@@ -156,5 +157,5 @@ vdrctl disable remote
 ```
 To show the plugin state ```vdrctl```
 
-Show how the VDR will be started with all his plugins and argumnets
+Show how the VDR will be started with all his plugins and arguments
 ```vdr --show```
