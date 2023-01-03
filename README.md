@@ -18,7 +18,6 @@ With the setup/scripts described here it is possible to execute commands like sy
 In this step the SD card is prepared for the first boot, this takes place completely on the Linux PC.
 If you want to use Windows to prepare the SD card, you only have to solve the step to mount the Ubuntu image with a loop device in a different way,
 I don't know what Windows offers for this. One simple solution would be to use another SD card from which you can copy the Ubuntu file tree.
-
 ## CoreELEC image
 ### Download CoreELEC image
 ```
@@ -33,7 +32,7 @@ wget https://odroid.in/ubuntu_22.04lts/N2/ubuntu-22.04-4.9-minimal-odroid-n2-202
 unxz ubuntu-22.04-4.9-minimal-odroid-n2-20220622.img.xz
 ```
 ### Mount the Ubuntu image to /mnt
-Theretofore get the postion of the partition
+To do so we have to get the position of the partition
 ```
 fdisk -l ubuntu-22.04-4.9-minimal-odroid-n2-20220622.img | grep Linux
 ubuntu-22.04-4.9-minimal-odroid-n2-20220622.img2      264192 7944191  7680000  3,7G 83 Linux
