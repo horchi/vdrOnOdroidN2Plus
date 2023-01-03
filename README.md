@@ -11,13 +11,15 @@ The scripts for building the environment and starting and stopping the services 
 
 # 1 Prepare SD card
 
+In this step the SD card is prepared for the first boot, this takes place completely on the PC (with me under Linux).
+
 ## CoreELEC image
 ### Download CoreELEC image
 ```
 wget https://github.com/CoreELEC/CoreELEC/releases/download/19.5-Matrix_rc3/CoreELEC-Amlogic-ng.arm-19.5-Matrix_rc3-Odroid_N2.img.gz
 ```
 and flush to SD card.
-Now mount the data partition of the DS card to \<your-coreelec-sd-moint-piont\>
+Now mount the data partition of the SD card to \<your-coreelec-sd-moint-point\>
 
 ## Download Ubutu image and uncompress
 ```
@@ -36,13 +38,18 @@ And mount it using this offset:
 sudo mount -o loop,offset=135266304 ./ubuntu-22.04-4.9-minimal-odroid-n2-20220622.img /mnt
 ```
 ### Copy the Ubuntu to the SD card below the CodeELEC installation
-mkdir <your-coreelec-sd-moint-piont>/storage
+mkdir <your-coreelec-sd-moint-point>/storage
 ```
-sudo cp -a /mnt/ <your-sd-moint-piont>/storage/UBUNTU/
+sudo cp -a /mnt/ <your-sd-moint-point>/storage/UBUNTU/
 umount /mnt
-rm <your-sd-moint-piont>/storage/UBUNTU/aafirstboot
-rm <your-sd-moint-piont>/storage/UBUNTU/.first_boot
-umount <your-sd-moint-piont>
+rm <your-sd-moint-point>/storage/UBUNTU/aafirstboot
+rm <your-sd-moint-point>/storage/UBUNTU/.first_boot
+```
+
+Finally umount the card
+```
+umount <your-sd-moint-point>
+```
 
 # 2 First boot
 
@@ -54,4 +61,24 @@ Use kodi to make the following settings
 - Tastatur
 - Sprache
 - WOL
+```
+
+# 3 Prepare UBUNTU/chroot environment
+
+### setup name resolution for UBUNTU/chroot
+
+Replace the IP with that of the name server to be used:
+```
+rm /storage/UBUNTU/etc/resolv.conf
+echo 'nameserver 192.168.200.101' > /storage/UBUNTU/etc/resolv.conf
+```
+
+### Install scripts and systemd unit files
+
+```
+mkdir /storage/build
+cd /storage/build
+git clone git@github.com:horchi/vdrOnOdroidN2Plus.git
+cd vdrOnOdroidN2Plus
+make install
 ```
