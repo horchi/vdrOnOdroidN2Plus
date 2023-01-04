@@ -6,7 +6,7 @@ CoreELEC is used as the base installation, the VDR is installed in a chrooted Ub
 The basic idea comes from here on the VDR portal https://www.vdr-portal.de/forum/index.php?thread/135070-howto-installation-eines-vdr-innerhalb-von-coreelec-amlogic-only/&postID=1349603#post1349603
 
 The communication of the chroot Environment with the basis installation of the CoreELEC and the systemd are based on a named pipe. The VDR is set up using it's configuration in /etc/vdr/conf.d and /etc/vdr/conf.avail which is more flexible than a run script.
-For the VDR and the plugins the ready prepared and build packages from the repositories of Alexander and Christian are used.
+For the VDR and the plugins the ready prepared and build packages from the repositories of seahawk1986 (Alexander) and ckone (Christian) are used.
 
 Installation on an SD card as described below, is sufficient from my point of view, especially if you have the data (recordings, ...) on a central storage like a Sever or NAS.
 Otherwise, the installation on an SSD works in principle the same.
@@ -21,7 +21,7 @@ I don't know what Windows offers for this. One simple solution would be to use a
 ## CoreELEC image
 ### Download CoreELEC image
 ```
-wget https://github.com/CoreELEC/CoreELEC/releases/download/19.5-Matrix_rc3/CoreELEC-Amlogic-ng.arm-19.5-Matrix_rc3-Odroid_N2.img.gz
+wget https://github.com/CoreELEC/CoreELEC/releases/download/19.5-Matrix/CoreELEC-Amlogic-ng.arm-19.5-Matrix-Odroid_N2.img.gz
 ```
 and flush to SD card.
 Now mount the data partition of the SD card to \<your-coreelec-sd-moint-point\>
@@ -64,8 +64,8 @@ Put the SD card into your ODROD N2+ and boot
 Use kodi to make the following settings
 ```
 - Timezone
-- Tastatur
-- Sprache
+- Keyboard
+- Language
 - WOL
 ```
 
@@ -107,14 +107,16 @@ Now change to the UBUNTU/chroot to perform the next steps under UBUNTU!
 dpkg-reconfigure tzdata
 ```
 
-### Add VDR repositories from Alexander and Christian
+### Add VDR ppa from seahawk1986
 ```
 apt install software-properties-common
 add-apt-repository ppa:seahawk1986-hotmail/jammy-main
-add-apt-repository ppa:ckone/jammy-vdr
+add-apt-repository ppa:seahawk1986-hotmail/jammy-vdr
 apt update
 apt dist-upgrade
 ```
+or replace alternatively ```ppa:seahawk1986-hotmail/jammy-vdr``` with the ppa of ckone ```ppa:ckone/jammy-vdr```
+it contains the menuselections and zapcockpit patches, but the selection of available plugins is a bit smaller.
 
 ### Now we install some essential packages as well as the VDR and some plugins
 
