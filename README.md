@@ -203,7 +203,9 @@ or to restart
 ```
 systemctl.sh restart vdr
 ```
-....
 
-/storage/bin/ubuntu-init-user.sh
-~/.bash_user
+# To be described later
+
+- /storage/bin/ubuntu-init-user.sh
+- /storage/.bash_user
+- nfs mount
