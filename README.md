@@ -24,6 +24,7 @@ I don't know what Windows offers for this. One simple solution would be to use a
 wget https://github.com/CoreELEC/CoreELEC/releases/download/19.5-Matrix/CoreELEC-Amlogic-ng.arm-19.5-Matrix-Odroid_N2.img.gz
 ```
 and flush to SD card. (or use the actuall image from https://github.com/CoreELEC/CoreELEC/releases)
+
 Now mount the data partition of the SD card to \<your-coreelec-sd-moint-point\>
 
 ## Download Ubutu image and uncompress
