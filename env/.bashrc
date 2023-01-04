@@ -13,6 +13,5 @@ fi
 
 export EDITOR=vi
 export PATH='/opt/bin:/storage/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin'
-export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa"
 
 cd

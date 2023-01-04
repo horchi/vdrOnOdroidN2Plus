@@ -46,3 +46,6 @@ done
 alias sc='systemctl.sh status '
 source /usr/share/bash-completion/completions/systemctl
 complete -F _systemctl sc
+
+# to use your key for git inside the chroot (ssh-agent not working in chroot)
+export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa"
