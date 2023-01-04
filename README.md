@@ -9,7 +9,7 @@ The communication of the chroot Environment with the basis installation of the C
 For the VDR and the plugins the ready prepared and build packages from the repositories of seahawk1986 (Alexander) and ckone (Christian) are used.
 
 Installation on an SD card as described below, is sufficient from my point of view, especially if you have the data (recordings, ...) on a central storage like a Sever or NAS.
-Otherwise, the installation on an SSD works in principle the same.
+Otherwise, the installation on an eMMC works in principle the same.
 
 With the setup/scripts described here it is possible to execute commands like systemctl directly from the UBUNTU/chroot environment on the CoreELEC base system.
 
@@ -23,6 +23,8 @@ I don't know what Windows offers for this. One simple solution would be to use a
 ```
 wget https://github.com/CoreELEC/CoreELEC/releases/download/19.5-Matrix/CoreELEC-Amlogic-ng.arm-19.5-Matrix-Odroid_N2.img.gz
 ```
+or use the actuall image from https://github.com/CoreELEC/CoreELEC/releases
+
 and flush to SD card.
 Now mount the data partition of the SD card to \<your-coreelec-sd-moint-point\>
 
@@ -31,6 +33,8 @@ Now mount the data partition of the SD card to \<your-coreelec-sd-moint-point\>
 wget https://odroid.in/ubuntu_22.04lts/N2/ubuntu-22.04-4.9-minimal-odroid-n2-20220622.img.xz
 unxz ubuntu-22.04-4.9-minimal-odroid-n2-20220622.img.xz
 ```
+or use the actuall image from https://odroid.in/ubuntu_22.04lts/N2/
+
 ### Mount the Ubuntu image to /mnt
 To do so we have to get the position of the partition
 ```
