@@ -69,11 +69,9 @@ rm <your-sd-moint-point>/UBUNTU/.first_boot
 
 Finally umount the card
 
-# 2 boot the ODROD N2+
+# 2 Prepare UBUNTU/chroot environment
 
-Put the SD card into your ODROD N2+ and boot
-
-# 3 Prepare UBUNTU/chroot environment
+Put the SD card into your ODROD N2+, boot and login as root via ssh
 
 ### Setup name resolution for UBUNTU/chroot
 
