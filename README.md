@@ -23,16 +23,29 @@ I don't know what Windows offers for this. One simple solution would be to use a
 ```
 wget https://github.com/CoreELEC/CoreELEC/releases/download/19.5-Matrix/CoreELEC-Amlogic-ng.arm-19.5-Matrix-Odroid_N2.img.gz
 ```
-and flush to SD card. (or use the actuall image from https://github.com/CoreELEC/CoreELEC/releases)
+and flush to SD card (or use the actuall image from https://github.com/CoreELEC/CoreELEC/releases).
 
-Now mount the data partition of the SD card to \<your-coreelec-sd-moint-point\>
+### Put the SD card into your ODROD N2+ and boot
+
+Now follow the installation wizard and activate at least the ssh access,
+then use kodi to make the following settings
+```
+- Timezone
+- Keyboard
+- Language
+- WOL
+- IR remote Power Code like MCE (or what you need)
+- adjust the resolution according to your need (3840 x 2160 for UHD)
+```
+Shutdown the ODROD, renmove the SD card and put it back into the Linux desctop PC,
+mount the data (STORAGE) partition of the SD card to \<your-coreelec-sd-moint-point\>
 
 ## Download Ubutu image and uncompress
 ```
 wget https://odroid.in/ubuntu_22.04lts/N2/ubuntu-22.04-4.9-minimal-odroid-n2-20220622.img.xz
 unxz ubuntu-22.04-4.9-minimal-odroid-n2-20220622.img.xz
 ```
-(or use the actuall image from https://odroid.in/ubuntu_22.04lts/N2/)
+(or use the actuall *minimal* Ubuntu image from https://odroid.in/ubuntu_22.04lts/N2/)
 
 ### Mount the Ubuntu image to /mnt
 To do so we have to get the position of the partition
@@ -48,29 +61,17 @@ sudo mount -o loop,offset=135266304 ./ubuntu-22.04-4.9-minimal-odroid-n2-2022062
 Now we can access the filesystem of the image without flushing it to a card.
 ### Copy the entire Ubuntu filesystem tree to the SD card below the CodeELEC installation
 ```
-mkdir -p <your-coreelec-sd-moint-point>/storage
-sudo cp -a /mnt/ <your-sd-moint-point>/storage/UBUNTU/
-umount /mnt
-rm <your-sd-moint-point>/storage/UBUNTU/aafirstboot
-rm <your-sd-moint-point>/storage/UBUNTU/.first_boot
+sudo cp -a /mnt/ <your-sd-moint-point>/UBUNTU/
+sudo umount /mnt
+rm <your-sd-moint-point>/UBUNTU/aafirstboot
+rm <your-sd-moint-point>/UBUNTU/.first_boot
 ```
 
 Finally umount the card
-```
-umount <your-sd-moint-point>
-```
 
-# 2 First boot
+# 2 boot the ODROD N2+
 
 Put the SD card into your ODROD N2+ and boot
-
-Use kodi to make the following settings
-```
-- Timezone
-- Keyboard
-- Language
-- WOL
-```
 
 # 3 Prepare UBUNTU/chroot environment
 
@@ -87,23 +88,24 @@ echo 'nameserver 192.168.200.101' > /storage/UBUNTU/etc/resolv.conf
 We fetch these files manually because we miss the git command under CoreELEC
 
 ```
-mkdir /storage/scripts/
-curl -o /storage/.config/system.d/ubuntu.service https://github.com/horchi/vdrOnOdroidN2Plus/blob/main/systemd.units/ubuntu.service
-curl -o /storage/bin/ubuntu-init.sh https://github.com/horchi/vdrOnOdroidN2Plus/blob/main/scripts/ubuntu-init.sh
-curl -o /storage/bin/chg-ubuntu https://github.com/horchi/vdrOnOdroidN2Plus/blob/main/scripts/chg-ubuntu
-curl -o /storage/.profile https://github.com/horchi/vdrOnOdroidN2Plus/blob/main/env/.profile
-curl -o /storage/.bashrc https://github.com/horchi/vdrOnOdroidN2Plus/blob/main/env/.bashrc
+mkdir /storage/UBUNTU/storage
+mkdir /storage/bin
+curl -o /storage/.config/system.d/ubuntu.service https://raw.githubusercontent.com/horchi/vdrOnOdroidN2Plus/main/systemd/units/ubuntu.service
+curl -o /storage/bin/ubuntu-init.sh https://raw.githubusercontent.com/horchi/vdrOnOdroidN2Plus/main/scripts/ubuntu-init.sh
+curl -o /storage/bin/chg-ubuntu https://raw.githubusercontent.com/horchi/vdrOnOdroidN2Plus/main/scripts/chg-ubuntu
+curl -o /storage/.bashrc https://raw.githubusercontent.com/horchi/vdrOnOdroidN2Plus/main/env/.bashrc
+curl -o /storage/.bashrc_ubuntu https://raw.githubusercontent.com/horchi/vdrOnOdroidN2Plus/main/env/.bashrc_ubuntu
+curl -o /storage/.profile https://raw.githubusercontent.com/horchi/vdrOnOdroidN2Plus/main/env/.profile
 
-source .bashrc
+chmod 755 /storage/bin/*
+source ~/.bashrc
 systemctl enable ubuntu.service
 systemctl start ubuntu.service      # start only once! Will be started automatically from the next boot.
-
-echo "source ~/.bashrc" > ~/.profile
 ```
 
 Now we are prepared to enter UBUNTU/chroot just by calling ```chg-ubuntu```, this command can always be used to get into the UBUNTU/chroot environment.
 
-Now change to the UBUNTU/chroot to perform the next steps under UBUNTU!
+Now change to the UBUNTU/chroot ```chg-ubuntu``` to perform the next steps under UBUNTU!
 
 ### Setup the timezone for Ubuntu
 ```
@@ -125,27 +127,29 @@ it contains the menuselections and zapcockpit patches, but the selection of avai
 
 Select the plugins below as you like
 ```
-apt install libgl-dev libglu-dev libgles2-mesa-dev freeglut3-dev libglm-dev libavcodec-dev libdrm-dev libasound2-dev vdr-dev
-apt install htop aptitude telnet psmisc git
-apt install vdr vdrctl
-apt install vdr-plugin-skindesigner vdr-plugin-menuorg
-apt install vdr-plugin-epg2vdr vdr-plugin-scraper2vdr vdr-plugin-osd2web
-apt install vdr-plugin-satip vdr-plugin-remote
-apt install vdr-plugin-seduatmo vdr-plugin-squeezebox
+apt install -y htop aptitude telnet psmisc git make g++
+apt install -y vdr vdrctl
+apt install -y libgl-dev libglu-dev libfreetype-dev libgles2-mesa-dev freeglut3-dev libglm-dev libavcodec-dev libdrm-dev libasound2-dev vdr-dev
+apt install -y vdr-plugin-skindesigner vdr-plugin-menuorg
+apt install -y vdr-plugin-epg2vdr vdr-plugin-scraper2vdr vdr-plugin-osd2web
+apt install -y vdr-plugin-satip vdr-plugin-remote
+apt install -y vdr-plugin-seduatmo vdr-plugin-squeezebox
+mkdir -p /var/lib/video
 ```
 
 Install the softhdodroid plugin
 ```
+mkdir /storage/build/
 cd /storage/build/
 git clone https://github.com/jojo61/vdr-plugin-softhdodroid
 cd vdr-plugin-softhdodroid
 make clean all install
+echo
 ```
 
 ### Install scripts and systemd unit files
 
 ```
-mkdir /storage/build
 cd /storage/build
 git clone git@github.com:horchi/vdrOnOdroidN2Plus.git
 cd vdrOnOdroidN2Plus
