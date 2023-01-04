@@ -1,10 +1,11 @@
 
-PREFIX  = /storage/test
+PREFIX  = /storage
 
 SYSTEMD_DEST = $(PREFIX)/.config/system.d/
 SYSTEMD_CFG = $(PREFIX)/.config/default
 SCRIPT_DEST = $(PREFIX)/bin
 LIRC_DEST = $(PREFIX)/etc/lirc
+VDR_CONF = $(PREFIX)/UBUNTU/etc/vdr/conf.avail
 
 install:
 	mkdir -p $(SCRIPT_DEST)
@@ -26,3 +27,7 @@ install:
 	if ! test -f $(LIRC_DEST)/lircrc; then \
 		install --mode=644 -D ./etc/lircrc $(LIRC_DEST)/lircrc; \
 	fi
+	if ! test -f $(VDR_CONF)/softhdodroid.conf; then \
+		install --mode=644 -D ./vdr.conf/softhdodroid.conf $(VDR_CONF)/softhdodroid.conf; \
+	fi
+

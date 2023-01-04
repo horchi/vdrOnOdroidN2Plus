@@ -37,7 +37,7 @@ alias_completion() {
 }
 
 # aliases to load completion for
-aliases=(afs ai ms)
+# aliases=(ms)
 
 for a in "${aliases[@]}"; do
     alias_completion "$a"
