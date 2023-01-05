@@ -242,7 +242,13 @@ mp_logos.sh -c /etc/mp_logos.conf
 ```
 and set the logo path option for the osd2web plugin to ```-l /usr/share/vdr/plugins/skindesigner/logos``` by calling ```vdrctl edit osd2web```
 
-# 3 Sensor data
+# 3 Customize
+
+If more mounts or other things are needed for the chroot environment this can be done useing the file ```/storage/bin/ubuntu-init-user.sh````
+it will not be overwritten when updating the scripts provided here
+the same can be done with your own settings for the .bashrc using ```/storage/.bash_user```
+
+# 4 Sensor data
 
 To display the cpu, memory and system temperatures with teh skindesigner plugin some sensore data is needed.
 The script is allready installed from this git and has to be linked to the skindesigner folder
@@ -252,12 +258,12 @@ rm -f /storage/UBUNTU/usr/lib/vdr/plugins/skindesigner/scripts/temperatures
 ln -s /storage/bin/temperatures.odroid  /storage/UBUNTU/usr/lib/vdr/plugins/skindesigner/scripts/temperatures
 ```
 
-# 4 Power key
+# 5 Power key
 
 If you like to power on by a key the power on switch can be enabled as described here:
 https://www.bachmann-lan.de/odroid-n2-mit-einfachem-power-switch/
 
-# 5 GPIO port
+# 6 GPIO port
 
 To control GPIO port with python scripts
 ```
@@ -269,7 +275,7 @@ ln -s /usr/include/wiringpi2/wiringPi.h /usr/local/include/wiringPi.h
 python3 -m pip install -U --user pip Odroid.GPIO
 ```
 
-# 6 TFT Display
+# 7 TFT Display
 
 To control a separate TFT with the osd2web plugin, the ODROID lacks a second HDMI output and another GPU to run X simultaneously with the VDR.
 My solution to this - since I don't want to do without the TFT with current information - is an additional Raspberry Pi on which only X and a browser are running.
@@ -280,6 +286,4 @@ here follows soon the description of the setup ...
 
 # To be described later
 
-- /storage/bin/ubuntu-init-user.sh
-- /storage/.bash_user
 - nfs mount
