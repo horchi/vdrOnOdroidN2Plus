@@ -244,9 +244,9 @@ and set the logo path option for the osd2web plugin to ```-l /usr/share/vdr/plug
 
 # 3 Customize
 
-If more mounts or other things are needed for the chroot environment this can be done useing the file ```/storage/bin/ubuntu-init-user.sh````
-it will not be overwritten when updating the scripts provided here
-the same can be done with your own settings for the .bashrc using ```/storage/.bash_user```
+If more mounts or other things are needed for the chroot environment this can be done useing the file ```/storage/bin/ubuntu-init-user.sh```
+it will not be overwritten when updating the scripts provided here.
+The same can be done with your own settings for the .bashrc using ```/storage/.bash_user```
 
 # 4 Sensor data
 
