@@ -206,7 +206,44 @@ or to restart
 systemctl.sh restart vdr
 ```
 
-# 3 To be described later
+
+# 3 Setup the channel logos for skindesigner and osd2web
+
+I use the logos as described here https://www.vdr-portal.de/forum/index.php?thread/133497-kanallogos-f%C3%BCr-den-vdr-skript-mp-logos/&postID=1324745#post1324745
+
+```
+chg-ubuntu
+cd /storage/build
+git clone https://github.com/MegaV0lt/MP_Logos
+cd MP_Logos
+cp mp_logos.conf.dist /etc/mp_logos.conf
+cp mp_logos.sh /storage//bin/
+mkdir /usr/share/vdr/plugins/skindesigner/logos
+```
+
+### Now adjust settings in /etc/mp_logos.conf, here's my configuration
+```
+CHANNELSCONF='/etc/vdr/channels.conf'  # VDR's Kanalliste
+LOGODIR='/usr/share/vdr/plugins/skindesigner/logos'
+MP_LOGODIR='/usr/share/vdr/plugins/skindesigner/mediaportal-de-logos'
+LOGO_VARIANT='Light'                   # Logos für dunklen Hintergrund
+USE_SVG='true'  # Auf 'true' setzen um SVG-Logos zu verwenden [Experimentell]
+CHANNELSCONF='/etc/vdr/channels.conf'  # VDR's Kanalliste
+```
+now (starting from the above paths) clone the logos from git
+```
+cd /storage/UBUNTU/usr/share/vdr/plugins/skindesigner/
+git clone https://github.com/Jasmeet181/mediaportal-de-logos.git
+```
+finally create the links
+```
+mp_logos.sh -c /etc/mp_logos.conf
+```
+and set the logo path option for the osd2web plugin to -l ```/usr/share/vdr/plugins/skindesigner/logos``` by calling ```vdrctl edit osd2web```
+
+
+
+# To be described later
 
 - /storage/bin/ubuntu-init-user.sh
 - /storage/.bash_user
