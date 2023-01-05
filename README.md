@@ -211,6 +211,7 @@ systemctl.sh restart vdr
 
 I use the logos as described here https://www.vdr-portal.de/forum/index.php?thread/133497-kanallogos-f%C3%BCr-den-vdr-skript-mp-logos/&postID=1324745#post1324745
 
+### The installation steps
 ```
 chg-ubuntu
 cd /storage/build
@@ -230,7 +231,7 @@ LOGO_VARIANT='Light'                   # Logos für dunklen Hintergrund
 USE_SVG='true'  # Auf 'true' setzen um SVG-Logos zu verwenden [Experimentell]
 CHANNELSCONF='/etc/vdr/channels.conf'  # VDR's Kanalliste
 ```
-now (starting from the above paths) clone the logos from git
+now (assuming the above paths settings) clone the logos from git
 ```
 cd /storage/UBUNTU/usr/share/vdr/plugins/skindesigner/
 git clone https://github.com/Jasmeet181/mediaportal-de-logos.git
@@ -239,7 +240,7 @@ finally create the links
 ```
 mp_logos.sh -c /etc/mp_logos.conf
 ```
-and set the logo path option for the osd2web plugin to -l ```/usr/share/vdr/plugins/skindesigner/logos``` by calling ```vdrctl edit osd2web```
+and set the logo path option for the osd2web plugin to ```-l /usr/share/vdr/plugins/skindesigner/logos``` by calling ```vdrctl edit osd2web```
 
 
 
