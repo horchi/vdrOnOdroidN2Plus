@@ -206,7 +206,6 @@ or to restart
 systemctl.sh restart vdr
 ```
 
-
 # 3 Setup the channel logos for skindesigner and osd2web
 
 I use the logos as described here https://www.vdr-portal.de/forum/index.php?thread/133497-kanallogos-f%C3%BCr-den-vdr-skript-mp-logos/&postID=1324745#post1324745
@@ -242,7 +241,13 @@ mp_logos.sh -c /etc/mp_logos.conf
 ```
 and set the logo path option for the osd2web plugin to ```-l /usr/share/vdr/plugins/skindesigner/logos``` by calling ```vdrctl edit osd2web```
 
+# 3 Sensor data
 
+For the cpu, mem and system temperature some sensore data is needed. The script is allready installed from this git and has to be linked
+```
+rm -f /storage/UBUNTU/usr/lib/vdr/plugins/skindesigner/scripts/temperatures
+ln -s /storage/bin/temperatures.odroid  /storage/UBUNTU/usr/lib/vdr/plugins/skindesigner/scripts/temperatures
+```
 
 # To be described later
 

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+OUTPUTFLDR="/tmp/skindesigner/"
+mkdir -p ${OUTPUTFLDR}
+
+# if the script is executed from system_information script set the locale back for "°C"
+LANG=de_DE.UTF-8
+
+rm -f ${OUTPUTFLDR}/cpu ${OUTPUTFLDR}/pccase ${OUTPUTFLDR}/gpu ${OUTPUTFLDR}/vdrcpu ${OUTPUTFLDR}/vdrmem
+
+read vdr_cpu vdr_mem  < <(ps -C vdr -o %cpu=,%mem= | sort | tail -n1)
+echo $vdr_cpu > ${OUTPUTFLDR}/vdrcpu
+echo $vdr_mem > ${OUTPUTFLDR}/vdrmem
+
+/storage/bin/pwrite.sh "/storage/chroot-commands.pipe" cputemp | sed s/" .*"/"°C"/ > ${OUTPUTFLDR}/cpu
+/storage/bin/pwrite.sh "/storage/chroot-commands.pipe" gputemp | sed s/" .*"/"°C"/ > ${OUTPUTFLDR}/gpu
