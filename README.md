@@ -269,6 +269,15 @@ ln -s /usr/include/wiringpi2/wiringPi.h /usr/local/include/wiringPi.h
 python3 -m pip install -U --user pip Odroid.GPIO
 ```
 
+# 6 TFT Display
+
+To control a separate TFT with the osd2web plugin, the ODROID lacks a second HDMI output or another GPU to run X simultaneously with the VDR.
+My solution to this - since I don't want to do without the TFT with current information - is an additional Raspberry Pi on which only X and a browser are running.
+According to my power meter the Raspberry Pi (3B) needs ~2.1 Watt (without display) in this operation.
+
+
+here follows soon the description of the setup ...
+
 # To be described later
 
 - /storage/bin/ubuntu-init-user.sh
