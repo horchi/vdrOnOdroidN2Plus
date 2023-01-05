@@ -132,6 +132,7 @@ apt install -y vdr-plugin-skindesigner vdr-plugin-menuorg
 apt install -y vdr-plugin-epg2vdr vdr-plugin-scraper2vdr vdr-plugin-osd2web
 apt install -y vdr-plugin-satip vdr-plugin-remote
 apt install -y vdr-plugin-seduatmo vdr-plugin-squeezebox
+apt install vdr-plugin-weatherforecast
 mkdir -p /var/lib/video
 ```
 
@@ -243,10 +244,29 @@ and set the logo path option for the osd2web plugin to ```-l /usr/share/vdr/plug
 
 # 3 Sensor data
 
-For the cpu, mem and system temperature some sensore data is needed. The script is allready installed from this git and has to be linked
+To display the cpu, memory and system temperatures with teh skindesigner plugin some sensore data is needed.
+The script is allready installed from this git and has to be linked to the skindesigner folder
 ```
+chg-ubuntu
 rm -f /storage/UBUNTU/usr/lib/vdr/plugins/skindesigner/scripts/temperatures
 ln -s /storage/bin/temperatures.odroid  /storage/UBUNTU/usr/lib/vdr/plugins/skindesigner/scripts/temperatures
+```
+
+# 4 Power key
+
+If you like to power on by a key the power on switch can be enabled as described here:
+https://www.bachmann-lan.de/odroid-n2-mit-einfachem-power-switch/
+
+# 5 GPIO port
+
+To control GPIO port with python scripts
+```
+chg-ubuntu
+sudo add-apt-repository -y ppa:hardkernel/ppa
+sudo apt update
+sudo apt install -y python3 python3-dev python3-pip odroid-wiringpi libwiringpi-dev
+ln -s /usr/include/wiringpi2/wiringPi.h /usr/local/include/wiringPi.h
+python3 -m pip install -U --user pip Odroid.GPIO
 ```
 
 # To be described later
