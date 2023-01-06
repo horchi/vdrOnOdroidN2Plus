@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/storage/bin/pwrite.sh "/storage/chroot-commands.pipe" "$*"
