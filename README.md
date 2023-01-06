@@ -13,6 +13,9 @@ Otherwise, the installation on an eMMC works in principle the same.
 
 With the setup/scripts described here it is possible to execute commands like systemctl directly from the UBUNTU/chroot environment on the CoreELEC base system.
 
+After the described installation one comes to a client VDR assuming that the data medium for recordings is mounted as a network drive and the DVB stream is provided via the satip or the streamdev plugins.
+The extension to a 'full-fledged' VDR by a DVB card (if this is supported by the kernel installed with CoreELEC) and a HDD / SSD for the recordings based on this setup is of course nothing in the way.
+
 # 1 Prepare SD card
 
 In this step the SD card is prepared for the first boot, this takes place completely on the Linux PC.
@@ -287,3 +290,4 @@ here follows soon the description of the setup ...
 # To be described later
 
 - nfs mount
+/etc/vdr/svdrphosts.conf
