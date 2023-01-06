@@ -2,6 +2,8 @@
 
 spipe=${1}
 
+source /storage/.bashrc
+
 if [[ -z "${spipe}" ]]; then
    echo "Missing pipe name"
    exit 1

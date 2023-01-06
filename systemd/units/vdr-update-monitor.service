@@ -1,0 +1,12 @@
+i[Unit]
+Description=vdr-update-monitor
+After=dbus.service
+Requires=dbus.service
+
+[Service]
+Type=simple
+ExecStart=chroot /storage/UBUNTU /usr/bin/vdr-update-monitor
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target

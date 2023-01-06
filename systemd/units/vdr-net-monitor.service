@@ -1,0 +1,12 @@
+[Unit]
+Description=vdr-net-monitor
+After=dbus.service
+Requires=dbus.service
+
+[Service]
+Type=simple
+ExecStart=chroot /storage/UBUNTU /usr/bin/vdr-net-monitor
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
