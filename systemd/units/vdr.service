@@ -8,9 +8,11 @@ After=network-online.service
 [Service]
 
 Type=notify
+EnvironmentFile=-/storage/.config/default/vdrtft
 ExecStart=/usr/sbin/chroot /storage/UBUNTU /usr/bin/vdr
 Restart=on-failure
 RestartPreventExitStatus=0 2
+ExecStartPost=/storage/bin/trigger-tft-reload.sh
 
 [Install]
 

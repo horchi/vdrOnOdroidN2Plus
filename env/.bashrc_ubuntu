@@ -1,6 +1,15 @@
 
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+    source /etc/bash_completion
+fi
+
+if [ -f ~/.bashrc_ubuntu_user ]; then
+   source ~/.bashrc_ubuntu_user
+fi
+
+if [ -d ~/.gitenv ]; then
+   source ~/.gitenv/git-prompt.sh
+   source ~/.gitenv/gitps
 fi
 
 #---------------------------------------------------------------
@@ -44,5 +53,8 @@ for a in "${aliases[@]}"; do
 done
 
 alias sc='systemctl.sh '
+
 source /usr/share/bash-completion/completions/systemctl
 complete -F _systemctl sc
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
