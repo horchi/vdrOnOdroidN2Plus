@@ -153,7 +153,7 @@ echo
 
 ```
 cd /storage/build
-git clone git@github.com:horchi/vdrOnOdroidN2Plus.git
+git https://github.com/horchi/vdrOnOdroidN2Plus.git
 cd vdrOnOdroidN2Plus
 make install
 ```
