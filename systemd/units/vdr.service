@@ -8,7 +8,7 @@ After=network-online.service
 [Service]
 
 Type=notify
-EnvironmentFile=-/storage/.config/default/vdrtft
+ExecStartPre=/storage/bin/irfix.sh
 ExecStart=/usr/sbin/chroot /storage/UBUNTU /usr/bin/vdr
 Restart=on-failure
 RestartPreventExitStatus=0 2
