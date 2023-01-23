@@ -2,5 +2,6 @@
 
 # fix slow IR (at least with logitech harmony)
 
-ir-keytable -D 375 -P 80
-ir-ctl -t 10000
+/usr/bin/ir-keytable -D 375 -P 80
+/usr/bin/ir-ctl -t 10000
+
