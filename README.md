@@ -273,21 +273,10 @@ chg-ubuntu
 mv /root /root.bak
 ln -s /storage /root
 ```
-
-add
-```Port 2022```
-to /etc/ssh/sshd_config
-
-Start sshd by calling
-```/usr/sbin/sshd```
-
-Now you can login directly to the chroot environment by
-```ssh  -p 2022 root@uhdvdr```
-
-or open a File remotly by emacs tramp protocol using URL:
-
-```/scp:root@uhdvdr#2022:/root/build/vdrOnOdroidN2Plus/```
-
+add ```Port 2022``` to /etc/ssh/sshd_config
+Start sshd by calling ```/usr/sbin/sshd```
+Now you can login directly to the chroot environment by ```ssh  -p 2022 root@uhdvdr```
+or open a File remotly by emacs tramp protocol using URL: ```/scp:root@uhdvdr#2022:/root/build/vdrOnOdroidN2Plus/```
 assuming uhdvdr is your DNS or IP
 
 # 8 GPIO port
