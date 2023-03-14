@@ -266,7 +266,31 @@ ln -s /storage/bin/temperatures.odroid  /storage/UBUNTU/usr/lib/vdr/plugins/skin
 If you like to power on by a key the power on switch can be enabled as described here:
 https://www.bachmann-lan.de/odroid-n2-mit-einfachem-power-switch/
 
-# 7 GPIO port
+# 7 sshd in chroot
+
+```
+chg-ubuntu
+mv /root /root.bak
+ln -s /storage /root
+```
+
+add
+```Port 2022```
+to /etc/ssh/sshd_config
+
+Start sshd by calling
+```/usr/sbin/sshd```
+
+Now you can login directly to the chroot environment by
+```ssh  -p 2022 root@uhdvdr```
+
+or open a File remotly by emacs tramp protocol using URL:
+
+```/scp:root@uhdvdr#2022:/root/build/vdrOnOdroidN2Plus/```
+
+assuming uhdvdr is your DNS or IP
+
+# 8 GPIO port
 
 To control GPIO port with python scripts
 ```
@@ -278,7 +302,7 @@ ln -s /usr/include/wiringpi2/wiringPi.h /usr/local/include/wiringPi.h
 python3 -m pip install -U --user pip Odroid.GPIO
 ```
 
-# 8 TFT Display
+# 9 TFT Display
 
 To control a separate TFT with the osd2web plugin, the ODROID lacks a second HDMI output and another GPU to run X simultaneously with the VDR.
 My solution to this - since I don't want to do without the TFT with current information - is an additional Raspberry Pi on which only X and a browser are running.
