@@ -280,7 +280,7 @@ Now you can login directly to the chroot environment by ```ssh  -p 2022 root@uhd
 or open a File remotly by emacs tramp protocol using URL: ```/scp:root@uhdvdr#2022:build/whatever```
 assuming uhdvdr is your DNS or IP
 
-TODO: Script to start/stop chroot sshd automatically
+Finally enable the service ```systemctl enable chroot-sshd.service```
 
 # 8 GPIO port
 

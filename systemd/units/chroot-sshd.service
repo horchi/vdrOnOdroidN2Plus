@@ -1,0 +1,21 @@
+
+[Unit]
+
+Description=SSH daemon for chroot environment
+Requires=network-online.service
+After=ubuntu.service
+
+[Service]
+
+Type=notify
+Restart=on-failure
+ExecStartPre=-/bin/sh -c 'mkdir -p /storage/UBUNTU/run/sshd'
+ExecStart=/usr/sbin/chroot /storage/UBUNTU /usr/sbin/sshd
+#ExecReload=/bin/kill -HUP $MAINPID
+TimeoutStopSec=1s
+RestartSec=2
+StartLimitInterval=0
+
+[Install]
+
+WantedBy=multi-user.target
