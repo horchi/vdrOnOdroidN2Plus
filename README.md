@@ -268,6 +268,7 @@ https://www.bachmann-lan.de/odroid-n2-mit-einfachem-power-switch/
 
 # 7 sshd in chroot
 
+Prepare to use same home folder:
 ```
 chg-ubuntu
 mv /root /root.bak
