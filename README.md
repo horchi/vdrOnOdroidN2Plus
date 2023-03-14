@@ -280,6 +280,8 @@ Now you can login directly to the chroot environment by ```ssh  -p 2022 root@uhd
 or open a File remotly by emacs tramp protocol using URL: ```/scp:root@uhdvdr#2022:/root/build/vdrOnOdroidN2Plus/```
 assuming uhdvdr is your DNS or IP
 
+TODO: Script to start/stop chroot sshd automatically
+
 # 8 GPIO port
 
 To control GPIO port with python scripts
