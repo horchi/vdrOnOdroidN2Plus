@@ -11,10 +11,10 @@ install:
 	mkdir -p $(SCRIPT_DEST)
 	install --mode=755 -D ./scripts/* $(SCRIPT_DEST)
 	mkdir -p $(SYSTEMD_DEST)
-	install --mode=755 -D ./systemd/units/* $(SYSTEMD_DEST)
+	install --mode=644 -D ./systemd/units/* $(SYSTEMD_DEST)
 	mkdir -p $(SYSTEMD_CFG)
 	if ! test -f $(SYSTEMD_CFG)/vdrtft; then \
-		install --mode=755 -D ./systemd/default/vdrtft $(SYSTEMD_CFG)/vdrtft; \
+		install --mode=644 -D ./systemd/default/vdrtft $(SYSTEMD_CFG)/vdrtft; \
 	fi
 	install --mode=644 -D ./env/.bashrc_ubuntu $(PREFIX)/.bashrc_ubuntu;
 	install --mode=644 -D ./env/.gitconfig $(PREFIX)/.gitconfig;
