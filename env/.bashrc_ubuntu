@@ -7,9 +7,13 @@ if [ -f ~/.bashrc_ubuntu_user ]; then
    source ~/.bashrc_ubuntu_user
 fi
 
+PS_PREFIX="\[\033[0;31m\]\t,\u@\h\[\033[0m\] [chroot] "
+
 if [ -d ~/.gitenv ]; then
    source ~/.gitenv/git-prompt.sh
    source ~/.gitenv/gitps
+else
+   PS1="${PS_PREFIX}\w> "
 fi
 
 #---------------------------------------------------------------

@@ -5,5 +5,7 @@ if [[ -f /storage/.config/default/vdrtft ]]; then
 fi
 
 if [[ -n ${TFT_HOST} ]]; then
-   /usr/bin/ssh pi@${TFT_HOST} /home/pi/bin/toggle.sh restart
+   /usr/bin/ssh pi@${TFT_HOST} /home/pi/bin/toggle.sh vdrosd force
 fi
+
+exit 0

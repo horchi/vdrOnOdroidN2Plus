@@ -1,0 +1,153 @@
+[user]
+	email = vdr@jwendel.de
+	name = horchi
+
+[core]
+   fileMode = true
+   quotepath = true
+   logAllRefUpdates = true
+   editor = vim
+   whitespace = blank-at-eol,space-before-tab,indent-with-non-tab,blank-at-eof,cr-at-eol
+   pager      = cat
+   excludesfile = /etc/gitexclude
+   preloadindex = true
+   sharedRepository = group
+#   pager = /usr/bin/less -r -S -x 3
+
+[commit]
+   status = true
+
+[gitcvs]
+   enabled = true
+
+[http]
+	sslVerify = false
+
+[branch]
+   autosetupmerge = true
+
+[diff]
+   renames = true
+   tool    = tkdiff
+   guitool = tkdiff
+
+[difftool]
+   prompt = false
+
+[merge]
+   tool              = tkdiff
+   log               = true
+   defaultToUpstream = true
+
+[log]
+   date = iso   
+   decorate = short
+   showroot = false
+
+[mergetool]
+   keepBackup = true
+   prompt  = false
+
+[push]
+   default = tracking
+
+[status]
+   relativePaths = true
+
+[color]
+   branch     = auto
+   diff       = auto
+   grep       = auto
+   showbranch = auto
+   status     = auto
+   interactive = auto
+
+[color "branch"]
+   current = magenta
+   remote  = dim white
+;   local   = red
+;   plain   = green
+
+[color "diff"]
+   meta       = dim white
+   frag       = dim white
+   old        = red
+   new        = blue
+   whitespace = reverse blue
+;   plain      =
+;   commit     = green
+;   func       =
+
+[color "decorate"]
+;  branch       = 
+   remoteBranch = dim white
+   tag          = blue
+   stash        = reverse red
+   HEAD         = magenta
+
+; [color "status"]
+;    header    =
+;    added     =
+;    updated   =
+;    changed   =
+;    untracked =
+;    nobranch  =
+
+[alias]
+   tkdiff  = difftool -t tkdiff
+   meld    = difftool -t meld
+   kdiff3  = difftool -t kdiff3
+
+   ; Short status display
+   s       = status --short  -uall --branch
+
+   ; Show all modifictations not yet added
+   di      = diff --ignore-all-space --name-status -C
+   dl      = diff --ignore-all-space --name-status -C
+
+   ; Show all added modification 
+   dc      = diff --ignore-all-space --name-status -C --cached
+
+   ; Short log history, 7 lines
+   l       = log --date-order --graph --format=tformat:'%cd %C(bold)%h%C(reset) %C(auto)%d%C(reset) %s%+N' --ignore-all-space --show-notes --graph --all -n 7
+
+   ; Log history, 7 lines, show changed files
+   lf      = log --date-order --graph --format=tformat:'%cd %C(bold)%h%C(reset) %C(auto)%d%C(reset) %s%+N' --ignore-all-space --show-notes --graph --all -n 7 --name-status --decorate=full 
+
+   ; Full log history
+   la      = log --date-order --graph --format=tformat:'%cd %C(bold)%h%C(reset) %C(auto)%d%C(reset) %s%+N' --ignore-all-space --show-notes --graph --all
+
+   ; Full log history, show changed files
+   laf     = log --date-order --graph --format=tformat:'%cd %C(bold)%h%C(reset) %C(auto)%d%C(reset) %s%+N' --ignore-all-space --show-notes --graph --all --name-status --decorate=full 
+
+   ; List all branches with verbose information
+   b        = branch -a -v -v --list
+
+   ; Get current branch name
+   bl       = rev-parse --abbrev-ref --symbolic-full-name HEAD
+
+   ; Get remote tracking branch name
+   br       = rev-parse --abbrev-ref --symbolic-full-name @{u}
+
+   ; Get last common commit between local branch and remote branch
+   mb       = merge-base HEAD @{u}
+
+   ; Show all unmerged commits
+   ld       = log --date-order --graph --format=tformat:'%cd %C(bold)%h%C(reset) %C(auto)%d%C(reset) %s%+N' --ignore-all-space --show-notes --graph  HEAD...@{u}
+
+   ; Show all unmerged commits, show changed files
+   ldf      = log --date-order --graph --format=tformat:'%cd %C(bold)%h%C(reset) %C(auto)%d%C(reset) %s%+N' --ignore-all-space --show-notes --graph  --name-status --decorate=full  HEAD...@{u}
+
+;    ls      = log --date-order --graph --summary --ignore-all-ce --name-status -C
+;    tdc     = difftool -t tkdiff --ignore-all-space --name-status -C --cached
+;    tdo     = difftool -t tkdiff --ignore-all-space --name-status -C HEAD...origin
+[http]
+	sslVerify = false
+[safe]
+	directory = /tank/system/build/vdr-epg-daemon
+	directory = /tank/system/build/PLUGINS/vdr-plugin-epg2vdr
+	directory = /tank/system/build/linux-p4d
+	directory = /tank/system/build/PLUGINS/vdr-plugin-osd2web
+	directory = /storage/PLUGINS/vdr-plugin-squeezebox
+	directory = /var/lib/vdr/plugins/skindesigner/installerskins/shady
+	directory = /var/lib/vdr/plugins/skindesigner/installerskins/skinrepositories

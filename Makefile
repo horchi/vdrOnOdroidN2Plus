@@ -17,6 +17,9 @@ install:
 		install --mode=755 -D ./systemd/default/vdrtft $(SYSTEMD_CFG)/vdrtft; \
 	fi
 	install --mode=644 -D ./env/.bashrc_ubuntu $(PREFIX)/.bashrc_ubuntu;
+	install --mode=644 -D ./env/.gitconfig $(PREFIX)/.gitconfig;
+	mkdir -p $(PREFIX)/.gitenv
+	install --mode=644 -D ./env/.gitenv/* $(PREFIX)/.gitenv/;
 	if ! test -f $(PREFIX)/.bashrc; then \
 		install --mode=644 -D ./env/.bashrc $(PREFIX)/.bashrc; \
 	fi
@@ -30,4 +33,3 @@ install:
 	if ! test -f $(VDR_CONF)/softhdodroid.conf; then \
 		install --mode=644 -D ./vdr.conf/softhdodroid.conf $(VDR_CONF)/softhdodroid.conf; \
 	fi
-
