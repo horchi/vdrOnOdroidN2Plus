@@ -1,0 +1,14 @@
+
+[Unit]
+
+Description="Starting chromium on startup"
+PartOf=default.target
+
+[Service]
+
+Environment="DISPLAY=:0"
+ExecStart=/home/pi/bin/browser.sh musicosd
+
+[Install]
+
+WantedBy=default.target

@@ -1,0 +1,14 @@
+
+[Unit]
+
+Description=OSD auto toggle
+PartOf=default.target
+
+[Service]
+
+Type=simple
+ExecStart=/home/pi/bin/osdautotoggle.sh
+
+[Install]
+
+WantedBy=default.target

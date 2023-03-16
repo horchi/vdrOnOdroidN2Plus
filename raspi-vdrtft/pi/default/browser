@@ -1,0 +1,23 @@
+
+ODROID_VDR_HOST=uhdvdr
+MUSIC_HOST=gate
+
+BROWSER="/usr/bin/chromium-browser"
+BROWSER_OPTIONS="--disable-infobars --kiosk"
+
+#BROWSER="/usr/bin/firefox"
+#BROWSER_OPTIONS="--kiosk"
+
+LOG=~/browser.log
+#LOG=/dev/null
+
+DISPLAY=:0
+
+URL_VDR_OSD="http://${ODROID_VDR_HOST}:4444/skins/horchiTft/index.html?theme=graycd&onlyView=1&tftPrio=5"
+URL_MUSIC="http://${MUSIC_HOST}:61109/index.html&kiosk=1&page=lmc"
+
+# show snow in november / december
+SHOW_SNOW=yes
+
+# show santa in december
+SHOW_SANTA=yes
