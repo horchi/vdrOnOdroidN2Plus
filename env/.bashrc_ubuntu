@@ -57,6 +57,7 @@ for a in "${aliases[@]}"; do
 done
 
 alias sc='systemctl.sh '
+alias systemctl='systemctl.sh '
 
 source /usr/share/bash-completion/completions/systemctl
 complete -F _systemctl sc
