@@ -277,10 +277,8 @@ mv /root /root.bak
 ln -s /storage /root
 ```
 add the port you like (different to 22!) to /etc/ssh/sshd_config. Port 2022 is already added by make install!
-Start sshd by calling ```/usr/sbin/sshd```
-Now you can login directly to the chroot environment by ```ssh -p 2022 root@uhdvdr```
-or open a File remotly by emacs tramp protocol using URL: ```/scp:root@uhdvdr#2022:build/whatever```
-assuming uhdvdr is your DNS or IP
+Start sshd by calling ```/usr/sbin/sshd```. Now you can login directly to the chroot environment by ```ssh -p 2022 root@uhdvdr```
+or open a File remotly with emacs tramp protocol using URL: ```/scp:root@uhdvdr#2022:build/whatever``` assuming uhdvdr is your DNS name or use the IP.
 
 
 # 8 GPIO port
