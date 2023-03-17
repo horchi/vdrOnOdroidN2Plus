@@ -180,6 +180,7 @@ Now leave the chroot ```exit``
 ## Enable Services and re-boot
 ```
 systemctl daemon-reload
+systemctl enable chroot-sshd.service
 systemctl enable chroot-command.service
 systemctl enable vdr.service
 systemctl enable irexec.service
@@ -189,10 +190,12 @@ reboot
 
 After reboot the VDR should run
 
-To use systemctl from the chroot environment the script systemctl.sh can be used. For example:
+To use systemctl from the chroot environment the script systemctl.sh is defined, this script can be called directly
+or the aliases sc and systemctl can be used. With this trick you can run systemctrl in the chroot as usual and it behaves (except for the color) completely transparent.
+For example (from inside chroot):
 
 ```
-systemctl.sh status vdr
+systemctl status vdr
 ● vdr.service - Video Disk Recorder
 Loaded: loaded (/storage/.config/system.d/vdr.service; enabled; vendor preset: disabled)
 Active: active (running) since Tue 2023-01-03 15:31:53 CET; 2min 37s ago
@@ -207,7 +210,7 @@ Jan 03 15:33:44 uhdvdr vdr[3602]: epg2vdr: Got 0 images from database in 0 secon
 ```
 or to restart
 ```
-systemctl.sh restart vdr
+systemctl restart vdr
 ```
 
 # 3 Setup the channel logos for skindesigner and osd2web
@@ -250,7 +253,6 @@ and set the logo path option for the osd2web plugin to ```-l /usr/share/vdr/plug
 If more mounts or other things are needed for the chroot environment this can be done useing the file ```/storage/bin/ubuntu-init-user.sh```
 it will not be overwritten when updating the scripts provided here.
 The same can be done with your own settings for the .bashrc using ```/storage/.bash_user```
-
 # 5 Sensor data
 
 To display the cpu, memory and system temperatures with teh skindesigner plugin some sensore data is needed.
@@ -274,13 +276,10 @@ chg-ubuntu
 mv /root /root.bak
 ln -s /storage /root
 ```
-add ```Port 2022``` to /etc/ssh/sshd_config
-Start sshd by calling ```/usr/sbin/sshd```
-Now you can login directly to the chroot environment by ```ssh  -p 2022 root@uhdvdr```
-or open a File remotly by emacs tramp protocol using URL: ```/scp:root@uhdvdr#2022:build/whatever```
-assuming uhdvdr is your DNS or IP
+add the port you like (different to 22!) to /etc/ssh/sshd_config. Port 2022 is already added by make install!
+Start sshd by calling ```/usr/sbin/sshd```. Now you can login directly to the chroot environment by ```ssh -p 2022 root@uhdvdr```
+or open a File remotly with emacs tramp protocol using URL: ```/scp:root@uhdvdr#2022:build/whatever``` assuming uhdvdr is your DNS name or use the IP.
 
-Finally enable the service ```systemctl enable chroot-sshd.service```
 
 # 8 GPIO port
 
