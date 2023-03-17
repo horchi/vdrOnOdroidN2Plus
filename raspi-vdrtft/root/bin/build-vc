@@ -1,0 +1,23 @@
+
+mkdir /tmp/ramdisk
+sudo mount -t tmpfs -o size=128M tmpfs /tmp/ramdisk
+cd /tmp/ramdisk
+
+git clone https://github.com/raspberrypi/userland
+
+cd userland
+./buildme
+
+## Wichtig: rpihddevice Pluigin von hier:
+# cd ~/PLUGINS/
+# git clone https://github.com/reufer/rpihddevice.git
+
+cd ~/PLUGINS/vdr-plugin-rpihddevice
+make -s -j 3 clean all install
+
+# Unter Buster:
+#  root@pool~> cat /boot/.firmware_revision
+#  2f60255653636e9d0a270a5572c77d937321bbdd
+
+# Unter Bullsey dann mit dieser Commit ID:
+# root@vdrtft:~# rpi-update 2f60255653636e9d0a270a5572c77d937321bbdd
