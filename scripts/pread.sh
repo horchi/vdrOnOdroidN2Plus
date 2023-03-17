@@ -25,7 +25,7 @@ while true; do
       fi
 
       echo "Info: executing '${command}'"
-      eval " ${command}" > ${cpipe}
+      eval " ${command} 2>&1" > ${cpipe}
 
       usleep 100
       echo "quit" > ${cpipe}
