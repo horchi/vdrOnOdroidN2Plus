@@ -1,5 +1,5 @@
 
 TFT_HOST=vdrtft
 
-# TFT_SHUTDOWN yes, no, on-vdrosd
+# TFT_SHUTDOWN {yes, no, on-vdrosd}
 TFT_SHUTDOWN=no

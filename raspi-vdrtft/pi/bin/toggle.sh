@@ -7,11 +7,14 @@ fi
 
 force="no"
 command=${1}
-force=${2}
 current=""
 log="/tmp/toggle.log"
 
-if [[ "$#" -ge 2 ]]; then
+if [[ "$#" -ge 2 && "${2}" == "force" ]]; then
+   force="yes"
+fi
+
+if [[ "${command}" == "restart" ]]; then
    force="yes"
 fi
 

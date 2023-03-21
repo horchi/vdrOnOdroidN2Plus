@@ -3,16 +3,18 @@
 
 Description=Video Disk Recorder
 Requires=network-online.service
-After=network-online.service
+After=network-online.service ubuntu.service
 
 [Service]
 
 Type=notify
 ExecStartPre=/storage/bin/irfix.sh
+ExecStartPre=/usr/sbin/chroot /storage/UBUNTU chown -R vdr:vdr /var/lib/vdr /etc/vdr
 ExecStart=/usr/sbin/chroot /storage/UBUNTU /usr/bin/vdr
 Restart=on-failure
 RestartPreventExitStatus=0 2
 ExecStartPost=/storage/bin/trigger-tft-reload.sh
+RestartSec=2
 
 [Install]
 

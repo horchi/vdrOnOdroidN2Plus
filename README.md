@@ -128,18 +128,19 @@ it contains the menuselections and zapcockpit patches, but the selection of avai
 
 Select the plugins below as you like
 ```
-apt install -y htop aptitude telnet psmisc git make g++
+apt install -y bash-completion htop aptitude telnet psmisc git make g++
 apt install -y vdr vdrctl
 apt install -y libgl-dev libglu-dev libfreetype-dev libgles2-mesa-dev freeglut3-dev libglm-dev libavcodec-dev libdrm-dev libasound2-dev vdr-dev
 apt install -y vdr-plugin-skindesigner vdr-plugin-menuorg
 apt install -y vdr-plugin-epg2vdr vdr-plugin-scraper2vdr vdr-plugin-osd2web
-apt install -y vdr-plugin-satip vdr-plugin-remote
-apt install -y vdr-plugin-seduatmo vdr-plugin-squeezebox
-apt install vdr-plugin-weatherforecast
+apt install -y vdr-plugin-satip
+apt install -y vdr-plugin-streamdev-client
+apt install -y vdr-plugin-remote vdr-plugin-seduatmo
+apt install -y vdr-plugin-weatherforecast
 mkdir -p /var/lib/video
 ```
 
-Install the softhdodroid plugin
+Build and install the softhdodroid plugin
 ```
 mkdir /storage/build/
 cd /storage/build/
@@ -299,8 +300,18 @@ To control a separate TFT with the osd2web plugin, the ODROID lacks a second HDM
 My solution to this - since I don't want to do without the TFT with current information - is an additional Raspberry Pi on which only X and a browser are running.
 According to my power meter the Raspberry Pi (3B) needs ~2.1 Watt (without display) in this operation.
 
-
 here follows soon the description of the setup ...
+
+# 10 execute root commands from vdr process
+if you like to execute root commands from the vdr process e.g. by the commands menu or der commands.json of the osd2web plugin it's necessary that the vdr get an interactive shell, for this replace in the ```/bin/fasle``` for the vdr user in ```/etc/passwd``` with ```/bin/bash```:
+```
+vdr:x:666:666:VDR user,,:/var/lib/vdr:/bin/bash
+```
+Then give the vdr user via ```/etc/sudoers.d/vdr``` the desired (passwordfree) permissions, or as in this example just all of them - yes we could now discuss about security, there are many ways this was for me the easiest and is no problem for me on the VDR hidden in my internal network.
+Example /etc/sudoers.d/vdr:
+```
+vdr ALL=(ALL) NOPASSWD: ALL
+```
 
 # To be described later
 

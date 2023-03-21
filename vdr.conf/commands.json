@@ -1,0 +1,9 @@
+{
+   "osdtft" : {
+      "command" : "/usr/bin/ssh pi@vdrtft /home/pi/bin/toggle.sh vdrosd"
+   },
+   "vdrtft" : {
+      "color" : "darkblue",
+      "command" : "/usr/bin/ssh pi@vdrtft /home/pi/bin/toggle.sh vdr"
+   }
+}
