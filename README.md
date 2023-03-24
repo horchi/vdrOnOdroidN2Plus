@@ -40,7 +40,7 @@ then use kodi to make the following settings
 - IR remote Power Code like MCE (or what you need)
 - adjust the resolution according to your need (3840 x 2160 for UHD)
 ```
-Shutdown the ODROD, renmove the SD card and put it back into the Linux desctop PC,
+Shutdown the ODROD, remove the SD card and put it back into the Linux desctop PC,
 mount the data (STORAGE) partition of the SD card to \<your-coreelec-sd-moint-point\>
 
 ## Download Ubutu image and uncompress
@@ -48,7 +48,7 @@ mount the data (STORAGE) partition of the SD card to \<your-coreelec-sd-moint-po
 wget https://odroid.in/ubuntu_22.04lts/N2/ubuntu-22.04-4.9-minimal-odroid-n2-20220622.img.xz
 unxz ubuntu-22.04-4.9-minimal-odroid-n2-20220622.img.xz
 ```
-(or use the actuall *minimal* Ubuntu image from https://odroid.in/ubuntu_22.04lts/N2/)
+(or use the actuall minimal Ubuntu image from https://odroid.in/ubuntu_22.04lts/N2/)
 
 ### Mount the Ubuntu image to /mnt
 To do so we have to get the position of the partition
@@ -66,8 +66,8 @@ Now we can access the filesystem of the image without flushing it to a card.
 ```
 sudo cp -a /mnt/ <your-sd-moint-point>/UBUNTU/
 sudo umount /mnt
-rm <your-sd-moint-point>/UBUNTU/aafirstboot
-rm <your-sd-moint-point>/UBUNTU/.first_boot
+sudo rm <your-sd-moint-point>/UBUNTU/aafirstboot
+sudo rm <your-sd-moint-point>/UBUNTU/.first_boot
 ```
 
 Finally umount the card
@@ -107,6 +107,7 @@ systemctl start ubuntu.service      # start only once! Will be started automatic
 Now we are prepared to enter UBUNTU/chroot just by calling ```chg-ubuntu```, this command can always be used to get into the UBUNTU/chroot environment.
 
 Now change to the UBUNTU/chroot ```chg-ubuntu``` to perform the next steps under UBUNTU!
+Ignore the warnings about the aliases and the completion_loader at this point.
 
 ### Setup the timezone for Ubuntu
 ```
@@ -142,21 +143,25 @@ mkdir -p /var/lib/video
 
 Build and install the softhdodroid plugin
 ```
-mkdir /storage/build/
-cd /storage/build/
+mkdir -p /storage/build/PLUGINS
+cd /storage/build/PLUGINS/
 git clone https://github.com/jojo61/vdr-plugin-softhdodroid
 cd vdr-plugin-softhdodroid
 make clean all install
-echo
 ```
 
 ### Install scripts and systemd unit files
 
 ```
 cd /storage/build
-git https://github.com/horchi/vdrOnOdroidN2Plus.git
+git clone https://github.com/horchi/vdrOnOdroidN2Plus.git
 cd vdrOnOdroidN2Plus
 make install
+```
+
+Avoid green ls colors due to public rights of some files
+```
+chmod 750 ~/music ~/pictures ~/screenshots ~/tvshows ~/videos
 ```
 
 Now adjust the settings of the vdr and the plugins as you like
@@ -302,7 +307,7 @@ According to my power meter the Raspberry Pi (3B) needs ~2.1 Watt (without displ
 
 here follows soon the description of the setup ...
 
-# 10 execute root commands from vdr process
+# 10 Execute root commands from vdr process
 if you like to execute root commands from the vdr process e.g. by the commands menu or der commands.json of the osd2web plugin it's necessary that the vdr get an interactive shell, for this replace in the ```/bin/fasle``` for the vdr user in ```/etc/passwd``` with ```/bin/bash```:
 ```
 vdr:x:666:666:VDR user,,:/var/lib/vdr:/bin/bash
@@ -312,6 +317,7 @@ Example /etc/sudoers.d/vdr:
 ```
 vdr ALL=(ALL) NOPASSWD: ALL
 ```
+and don't forgett ```chmod 440 /etc/sudoers.d/vdr:```
 
 # To be described later
 

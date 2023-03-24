@@ -5,7 +5,10 @@ SYSTEMD_DEST = $(PREFIX)/.config/system.d/
 SYSTEMD_CFG = $(PREFIX)/.config/default
 SCRIPT_DEST = $(PREFIX)/bin
 LIRC_DEST = $(PREFIX)/etc/lirc
-VDR_CONF = $(PREFIX)/UBUNTU/etc/vdr/conf.avail
+VDR_ETC = $(PREFIX)/UBUNTU/etc/vdr/
+VDR_CONF = $(VDR_ETC)/conf.avail
+VDR_HOME = $(PREFIX)/UBUNTU/var/lib/vdr
+
 
 install:
 	mkdir -p $(SCRIPT_DEST)
@@ -18,6 +21,7 @@ install:
 	fi
 	install --mode=644 -D ./env/.bashrc_ubuntu $(PREFIX)/.bashrc_ubuntu;
 	install --mode=644 -D ./env/.gitconfig $(PREFIX)/.gitconfig;
+	install --mode=644 -D ./env/.bash_aliases $(PREFIX)/.bash_aliases;
 	mkdir -p $(PREFIX)/.gitenv
 	install --mode=644 -D ./env/.gitenv/* $(PREFIX)/.gitenv/;
 	if ! test -f $(PREFIX)/.bashrc; then \
@@ -34,3 +38,11 @@ install:
 		install --mode=644 -D ./vdr.conf/softhdodroid.conf $(VDR_CONF)/softhdodroid.conf; \
 	fi
 	sed -i s/"^#*Port 22.*"/"Port 2022"/g /etc/ssh/sshd_config
+	chown -R vdr:vdr ~vdr/ $(VDR_ETC)
+
+initial-install: install
+	install --mode=644 -D ./vdr.conf/00-vdr.conf $(VDR_ETC)/conf.d/ \
+	install --mode=644 -D ./vdr.conf/channels.conf $(VDR_HOME) \
+	install --mode=644 -D ./vdr.conf/remote.conf $(VDR_HOME) \
+	install --mode=644 -D ./vdr.conf/remote.conf $(VDR_HOME) \
+	install --mode=644 -D ./vdr.conf/svdrphosts.conf $(VDR_ETC)

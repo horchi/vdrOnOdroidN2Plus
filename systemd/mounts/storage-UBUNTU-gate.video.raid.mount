@@ -1,0 +1,28 @@
+
+[Unit]
+
+Description=nfs mount
+Requires=network-online.service
+After=network-online.service
+Before=vdr.service
+
+[Mount]
+
+Type=nfs
+
+What=gate:/tank/video
+Where=/storage/UBUNTU/gate.video.raid/
+
+# Any options you usually use with the "-o" parameter in the mount command
+Options=
+
+[Install]
+
+WantedBy=multi-user.target
+
+# this file must be renamed to <mountpoint>.mount where <mountpoint>, is the FULL path
+# where the share will be mounted but slashes "/" MUST BE REPLACED with dashes "-" with .mount as extension.
+# This means, if we want mount to "/storage/movies2" 
+# then this file must be renamed to 'storage-movies2.mount' and can be enabled via ssh with 
+# 'systemctl enable storage-movies2.mount'
+

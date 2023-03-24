@@ -1,0 +1,21 @@
+
+[Unit]
+
+Description=nfs mount
+Requires=network-online.service
+After=network-online.service
+Before=vdr.service
+
+[Mount]
+
+Type=nfs
+
+What=gate:/tank/pictures
+Where=/storage/UBUNTU/gate.pictures/
+
+# Any options you usually use with the "-o" parameter in the mount command
+Options=
+
+[Install]
+
+WantedBy=multi-user.target

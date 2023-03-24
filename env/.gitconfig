@@ -1,6 +1,4 @@
 [user]
-	email = vdr@jwendel.de
-	name = horchi
 
 [core]
    fileMode = true
@@ -12,7 +10,7 @@
    excludesfile = /etc/gitexclude
    preloadindex = true
    sharedRepository = group
-#   pager = /usr/bin/less -r -S -x 3
+   # pager = /usr/bin/less -r -S -x 3
 
 [commit]
    status = true
@@ -40,7 +38,7 @@
    defaultToUpstream = true
 
 [log]
-   date = iso   
+   date = iso
    decorate = short
    showroot = false
 
@@ -79,7 +77,7 @@
 ;   func       =
 
 [color "decorate"]
-;  branch       = 
+;  branch       =
    remoteBranch = dim white
    tag          = blue
    stash        = reverse red
@@ -105,20 +103,20 @@
    di      = diff --ignore-all-space --name-status -C
    dl      = diff --ignore-all-space --name-status -C
 
-   ; Show all added modification 
+   ; Show all added modification
    dc      = diff --ignore-all-space --name-status -C --cached
 
    ; Short log history, 7 lines
    l       = log --date-order --graph --format=tformat:'%cd %C(bold)%h%C(reset) %C(auto)%d%C(reset) %s%+N' --ignore-all-space --show-notes --graph --all -n 7
 
    ; Log history, 7 lines, show changed files
-   lf      = log --date-order --graph --format=tformat:'%cd %C(bold)%h%C(reset) %C(auto)%d%C(reset) %s%+N' --ignore-all-space --show-notes --graph --all -n 7 --name-status --decorate=full 
+   lf      = log --date-order --graph --format=tformat:'%cd %C(bold)%h%C(reset) %C(auto)%d%C(reset) %s%+N' --ignore-all-space --show-notes --graph --all -n 7 --name-status --decorate=full
 
    ; Full log history
    la      = log --date-order --graph --format=tformat:'%cd %C(bold)%h%C(reset) %C(auto)%d%C(reset) %s%+N' --ignore-all-space --show-notes --graph --all
 
    ; Full log history, show changed files
-   laf     = log --date-order --graph --format=tformat:'%cd %C(bold)%h%C(reset) %C(auto)%d%C(reset) %s%+N' --ignore-all-space --show-notes --graph --all --name-status --decorate=full 
+   laf     = log --date-order --graph --format=tformat:'%cd %C(bold)%h%C(reset) %C(auto)%d%C(reset) %s%+N' --ignore-all-space --show-notes --graph --all --name-status --decorate=full
 
    ; List all branches with verbose information
    b        = branch -a -v -v --list
@@ -143,11 +141,3 @@
 ;    tdo     = difftool -t tkdiff --ignore-all-space --name-status -C HEAD...origin
 [http]
 	sslVerify = false
-[safe]
-	directory = /tank/system/build/vdr-epg-daemon
-	directory = /tank/system/build/PLUGINS/vdr-plugin-epg2vdr
-	directory = /tank/system/build/linux-p4d
-	directory = /tank/system/build/PLUGINS/vdr-plugin-osd2web
-	directory = /storage/PLUGINS/vdr-plugin-squeezebox
-	directory = /var/lib/vdr/plugins/skindesigner/installerskins/shady
-	directory = /var/lib/vdr/plugins/skindesigner/installerskins/skinrepositories
