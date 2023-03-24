@@ -97,7 +97,7 @@ curl -o /storage/bin/ubuntu-init.sh https://raw.githubusercontent.com/horchi/vdr
 curl -o /storage/bin/chg-ubuntu https://raw.githubusercontent.com/horchi/vdrOnOdroidN2Plus/main/scripts/chg-ubuntu
 curl -o /storage/.bashrc https://raw.githubusercontent.com/horchi/vdrOnOdroidN2Plus/main/env/.bashrc
 curl -o /storage/.bashrc_ubuntu https://raw.githubusercontent.com/horchi/vdrOnOdroidN2Plus/main/env/.bashrc_ubuntu
-curl -o /storage/.bash_aliases https://raw.githubusercontent.com/horchi/vdrOnOdroidN2Plus/main/env/.bashrc_ubuntu
+curl -o /storage/.bash_aliases https://raw.githubusercontent.com/horchi/vdrOnOdroidN2Plus/main/env/.bash_aliases
 curl -o /storage/.profile https://raw.githubusercontent.com/horchi/vdrOnOdroidN2Plus/main/env/.profile
 
 chmod 755 /storage/bin/*
