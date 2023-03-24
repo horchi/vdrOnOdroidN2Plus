@@ -20,7 +20,7 @@ while true; do
       cpipe=`echo ${line} | cut -d':' -f1`
       command=`echo ${line} | cut -d':' -f2`
 
-      if [[ "${command}" == 'quit' ]]; then
+      if [[ "${command}" == '__quit__' ]]; then
          break
       fi
 
@@ -28,7 +28,7 @@ while true; do
       eval " ${command} 2>&1" > ${cpipe}
 
       usleep 100
-      echo "quit" > ${cpipe}
+      echo "__quit__" > ${cpipe}
    fi
 done
 

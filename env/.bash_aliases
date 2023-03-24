@@ -1,0 +1,15 @@
+alias md=mkdir
+alias rd=rmdir
+alias ls='ls --color=auto'
+alias l='ls -lh $LS_OPTIONS'
+alias ll='l -ah'
+alias dir='l --color'
+alias ms='nice make -s'
+alias msc='nice make -s clean'
+alias envg='env | grep -a '
+alias hg='history | grep -a '
+alias psg='ps -edaf | grep -a '
+alias vl='journalctl -f '
+alias sc='systemctl '
+alias scs='systemctl status '
+alias locate='locate --regex '

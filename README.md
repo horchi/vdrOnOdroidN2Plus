@@ -24,8 +24,9 @@ I don't know what Windows offers for this. One simple solution would be to use a
 ## CoreELEC image
 ### Download CoreELEC image
 ```
-wget https://github.com/CoreELEC/CoreELEC/releases/download/19.5-Matrix/CoreELEC-Amlogic-ng.arm-19.5-Matrix-Odroid_N2.img.gz
+wget https://github.com/CoreELEC/CoreELEC/releases/download/20.1-Nexus/CoreELEC-Amlogic-ng.arm-20.1-Nexus-Odroid_N2.img.gz
 ```
+
 and flush to SD card (or use the actuall image from https://github.com/CoreELEC/CoreELEC/releases).
 
 ### Put the SD card into your ODROD N2+ and boot
@@ -96,6 +97,7 @@ curl -o /storage/bin/ubuntu-init.sh https://raw.githubusercontent.com/horchi/vdr
 curl -o /storage/bin/chg-ubuntu https://raw.githubusercontent.com/horchi/vdrOnOdroidN2Plus/main/scripts/chg-ubuntu
 curl -o /storage/.bashrc https://raw.githubusercontent.com/horchi/vdrOnOdroidN2Plus/main/env/.bashrc
 curl -o /storage/.bashrc_ubuntu https://raw.githubusercontent.com/horchi/vdrOnOdroidN2Plus/main/env/.bashrc_ubuntu
+curl -o /storage/.bash_aliases https://raw.githubusercontent.com/horchi/vdrOnOdroidN2Plus/main/env/.bashrc_ubuntu
 curl -o /storage/.profile https://raw.githubusercontent.com/horchi/vdrOnOdroidN2Plus/main/env/.profile
 
 chmod 755 /storage/bin/*
@@ -156,6 +158,7 @@ make clean all install
 cd /storage/build
 git clone https://github.com/horchi/vdrOnOdroidN2Plus.git
 cd vdrOnOdroidN2Plus
+make initial-install  # only the first time!
 make install
 ```
 
@@ -317,7 +320,7 @@ Example /etc/sudoers.d/vdr:
 ```
 vdr ALL=(ALL) NOPASSWD: ALL
 ```
-and don't forgett ```chmod 440 /etc/sudoers.d/vdr:```
+and don't forgett ```chmod 440 /etc/sudoers.d/vdr```
 
 # To be described later
 

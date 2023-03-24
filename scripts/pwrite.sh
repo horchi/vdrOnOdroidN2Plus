@@ -29,7 +29,7 @@ echo "${cpipe}:${message}" > ${spipe}
 
 while true; do
    if read line < ${cpipe}; then
-      if [[ "${line}" == 'quit' ]]; then
+      if [[ "${line}" == '__quit__' ]]; then
          break
       fi
       echo "${line}"

@@ -37,12 +37,11 @@ install:
 	if ! test -f $(VDR_CONF)/softhdodroid.conf; then \
 		install --mode=644 -D ./vdr.conf/softhdodroid.conf $(VDR_CONF)/softhdodroid.conf; \
 	fi
-	sed -i s/"^#*Port 22.*"/"Port 2022"/g /etc/ssh/sshd_config
 	chown -R vdr:vdr ~vdr/ $(VDR_ETC)
+	sed -i s/"^#*Port 22.*"/"Port 2022"/g /etc/ssh/sshd_config
 
 initial-install: install
-	install --mode=644 -D ./vdr.conf/00-vdr.conf $(VDR_ETC)/conf.d/ \
-	install --mode=644 -D ./vdr.conf/channels.conf $(VDR_HOME) \
-	install --mode=644 -D ./vdr.conf/remote.conf $(VDR_HOME) \
-	install --mode=644 -D ./vdr.conf/remote.conf $(VDR_HOME) \
+	install --mode=644 -D ./vdr.conf/00-vdr.conf $(VDR_ETC)/conf.d/
+	install --mode=644 -D ./vdr.conf/channels.conf $(VDR_HOME)
+	install --mode=644 -D ./vdr.conf/remote.conf $(VDR_HOME)
 	install --mode=644 -D ./vdr.conf/svdrphosts.conf $(VDR_ETC)
