@@ -109,7 +109,7 @@ systemctl start ubuntu.service      # start only once! Will be started automatic
 Now we are prepared to enter UBUNTU/chroot just by calling ```chg-ubuntu```, this command can always be used to get into the UBUNTU/chroot environment.
 
 Now change to the UBUNTU/chroot ```chg-ubuntu``` to perform the next steps under UBUNTU!
-Ignore the warnings about the aliases and the completion_loader at this point.
+Ignore the warnings about the aliases and the completion_loader at this point (fixed later).
 
 ### Setup the timezone for Ubuntu
 ```
@@ -308,14 +308,19 @@ To control a separate TFT with the osd2web plugin, the ODROID lacks a second HDM
 My solution to this - since I don't want to do without the TFT with current information - is an additional Raspberry Pi on which only X and a browser are running.
 According to my power meter the Raspberry Pi (3B) needs ~2.1 Watt (without display) in this operation.
 
+## Install video core unter Raspbian Bullsey
+http://dev1galaxy.org/viewtopic.php?id=2967
+
 here follows soon the description of the setup ...
+... # TODO
 
 # 10 Execute root commands from vdr process
 if you like to execute root commands from the vdr process e.g. by the commands menu or der commands.json of the osd2web plugin it's necessary that the vdr get an interactive shell, for this replace in the ```/bin/fasle``` for the vdr user in ```/etc/passwd``` with ```/bin/bash```:
 ```
 vdr:x:666:666:VDR user,,:/var/lib/vdr:/bin/bash
 ```
-Then give the vdr user via ```/etc/sudoers.d/vdr``` the desired (passwordfree) permissions, or as in this example just all of them - yes we could now discuss about security, there are many ways this was for me the easiest and is no problem for me on the VDR hidden in my internal network.
+## As long as the vdr is running under vdr user and not as root
+Give the vdr user the desired (passwordfree) permissions by ```/etc/sudoers.d/vdr```, or as in this example just all of them - yes we could now discuss about security, there are many ways this was for me the easiest and is no problem for me on the VDR hidden in my internal network.
 Example /etc/sudoers.d/vdr:
 ```
 vdr ALL=(ALL) NOPASSWD: ALL
@@ -325,4 +330,55 @@ and don't forgett ```chmod 440 /etc/sudoers.d/vdr```
 # To be described later
 
 - nfs mount
-/etc/vdr/svdrphosts.conf
+- /etc/vdr/svdrphosts.conf
+
+# 11 Enable OneWire support
+
+## If the CoreELEC version already support it
+You can check by calling ```fdtget /flash/dtb.img /onewire gpios```
+It only has to be enabled by
+```
+mount -o remount,rw /flash
+fdtput -t s /flash/dtb.img /onewire status okay
+reboot
+```
+
+## Otherwise (not suppoorted)
+
+On CoreELEC 20.1 Nexus you can use g12b-s922x-odroid-n2.dtb-w1-gpio from this git here
+```
+mount -o remount,rw /flash
+cp /flash/dtb.img /flash/dtb.img-orig
+cp ./flash/g12b-s922x-odroid-n2.dtb-w1-gpio /flash/dtb.img
+sync
+reboot
+```
+
+## check onewire support by
+```
+lsmod |grep w1
+w1-therm               16384  0
+w1-gpio                16384  0
+wire                   45056  2 w1-gpio,w1-therm
+```
+and
+```
+cat /sys/kernel/debug/gpio | grep w1
+ gpio-483 (                    |w1                  ) in  hi
+```
+and
+```
+fdtget /flash/dtb.img /onewire gpios
+25 73 0
+```
+and at least check if the bus-master and the connected sensors are present
+```
+ls -l /sys/bus/w1/devices/
+lrwxrwxrwx 1 root root  0 Mar 28 05:36 28-3c16f64891e4 -> ../../../devices/w1-bus-master1/28-3c16f64891e4
+lrwxrwxrwx 1 root root  0 Mar 28 05:36 w1-bus-master1 -> ../../../devices/w1-bus-master1
+```
+
+# 12 Some links
+
+https://wiki.odroid.com/odroid-n2/hardware/expansion_connectors
+https://wiki.odroid.com/odroid-n2/application_note/gpio/1wire
