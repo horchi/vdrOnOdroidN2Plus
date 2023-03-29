@@ -162,12 +162,12 @@ make initial-install  # only the first time!
 make install
 ```
 
-Avoid green ls colors due to public rights of some files
-```
-chmod 750 ~/music ~/pictures ~/screenshots ~/tvshows ~/videos
-```
+### Adjust SVDRP permissions
 
-Now adjust the settings of the vdr and the plugins as you like
+Set the permissions in ```/etc/vdr/svdrphosts.conf``` to make sure that the epgd can reach the VDR and also the communication with the Raspberry Pi for the TFT OSD display works - if available.
+For this it is best to allow the complete subnet (adjust ip mask): ```192.168.200.0/24```
+
+### Adjust the settings of the vdr and the plugins as you like
 ```
 vdrctl edit vdr
 vdrctl edit <plugin name>
@@ -302,7 +302,7 @@ ln -s /usr/include/wiringpi2/wiringPi.h /usr/local/include/wiringPi.h
 python3 -m pip install -U --user pip Odroid.GPIO
 ```
 
-# 9 TFT Display
+# 9 TFT/OSD Display
 
 To control a separate TFT with the osd2web plugin, the ODROID lacks a second HDMI output and another GPU to run X simultaneously with the VDR.
 My solution to this - since I don't want to do without the TFT with current information - is an additional Raspberry Pi on which only X and a browser are running.
