@@ -327,25 +327,18 @@ vdr ALL=(ALL) NOPASSWD: ALL
 ```
 and don't forgett ```chmod 440 /etc/sudoers.d/vdr```
 
-# To be described later
-
-- nfs mount
-- /etc/vdr/svdrphosts.conf
-
 # 11 Enable OneWire support
 
 ## If the CoreELEC version already support it
-You can check by calling ```fdtget /flash/dtb.img /onewire gpios```
-It only has to be enabled by
+You can check this by calling ```fdtget /flash/dtb.img /onewire gpios``` it only has to be enabled by
 ```
 mount -o remount,rw /flash
 fdtput -t s /flash/dtb.img /onewire status okay
 reboot
 ```
+## Otherwise (if not supported)
 
-## Otherwise (not suppoorted)
-
-On CoreELEC 20.1 Nexus you can use g12b-s922x-odroid-n2.dtb-w1-gpio from this git here
+On CoreELEC 20.1 Nexus you can use https://github.com/horchi/vdrOnOdroidN2Plus/tree/main/flash :
 ```
 mount -o remount,rw /flash
 cp /flash/dtb.img /flash/dtb.img-orig
@@ -353,8 +346,12 @@ cp ./flash/g12b-s922x-odroid-n2.dtb-w1-gpio /flash/dtb.img
 sync
 reboot
 ```
-
-## check onewire support by
+## Check onewire support by
+```
+fdtget /flash/dtb.img /onewire gpios
+25 73 0
+```
+and
 ```
 lsmod |grep w1
 w1-therm               16384  0
@@ -366,11 +363,6 @@ and
 cat /sys/kernel/debug/gpio | grep w1
  gpio-483 (                    |w1                  ) in  hi
 ```
-and
-```
-fdtget /flash/dtb.img /onewire gpios
-25 73 0
-```
 and at least check if the bus-master and the connected sensors are present
 ```
 ls -l /sys/bus/w1/devices/
@@ -378,7 +370,12 @@ lrwxrwxrwx 1 root root  0 Mar 28 05:36 28-3c16f64891e4 -> ../../../devices/w1-bu
 lrwxrwxrwx 1 root root  0 Mar 28 05:36 w1-bus-master1 -> ../../../devices/w1-bus-master1
 ```
 
-# 12 Some links
+# 12 To be described later
+
+- nfs mount
+- /etc/vdr/svdrphosts.conf
+
+# 13 Some links
 
 https://wiki.odroid.com/odroid-n2/hardware/expansion_connectors
 https://wiki.odroid.com/odroid-n2/application_note/gpio/1wire
