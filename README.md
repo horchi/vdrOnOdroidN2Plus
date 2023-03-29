@@ -167,7 +167,7 @@ make install
 Set the permissions in ```/etc/vdr/svdrphosts.conf``` to make sure that the epgd can reach the VDR and also the communication with the Raspberry Pi for the TFT OSD display works - if available.
 For this it is best to allow the complete subnet (adjust ip mask): ```192.168.200.0/24```
 
-### Adjust the settings of the vdr and the plugins as you like
+### Adjust the settings of the vdr and the plugins to your needs
 ```
 vdrctl edit vdr
 vdrctl edit <plugin name>
