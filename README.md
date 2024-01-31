@@ -133,7 +133,7 @@ Select the plugins below as you like
 ```
 apt install -y bash-completion htop aptitude telnet psmisc git make g++
 apt install -y vdr vdrctl
-apt install -y libgl-dev libglu-dev libfreetype-dev libgles2-mesa-dev freeglut3-dev libglm-dev libavcodec-dev libdrm-dev libasound2-dev vdr-dev
+apt install -y libgl-dev libglu-dev libfreetype-dev libgles2-mesa-dev freeglut3-dev libglm-dev libavcodec-dev libdrm-dev libasound2-dev vdr-dev fonts-open-sans
 apt install -y vdr-plugin-skindesigner vdr-plugin-menuorg
 apt install -y vdr-plugin-epg2vdr vdr-plugin-scraper2vdr vdr-plugin-osd2web
 apt install -y vdr-plugin-satip
