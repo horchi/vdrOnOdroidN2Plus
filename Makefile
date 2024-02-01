@@ -46,4 +46,4 @@ initial-install: install
 	install --mode=644 -D ./vdr.conf/channels.conf $(VDR_HOME)
 	install --mode=644 -D ./vdr.conf/remote.conf $(VDR_HOME)
 	install --mode=644 -D ./vdr.conf/svdrphosts.conf $(VDR_ETC)
-	install --mode=644 -D ./config/* $(CONFIG)/
+	cp -a ./config/* $(CONFIG)/
