@@ -24,15 +24,17 @@ I don't know what Windows offers for this. One simple solution would be to use a
 ## CoreELEC image
 ### Download CoreELEC image
 ```
+tested with:
 wget https://github.com/CoreELEC/CoreELEC/releases/download/20.1-Nexus/CoreELEC-Amlogic-ng.arm-20.1-Nexus-Odroid_N2.img.gz
+new:
+wget https://github.com/CoreELEC/CoreELEC/releases/download/20.3-Nexus/CoreELEC-Amlogic-ng.arm-20.3-Nexus-Odroid_N2.img.gz
 ```
 
-and flush to SD card (or use the actuall image from https://github.com/CoreELEC/CoreELEC/releases).
+and flush to SD card with e.g. the usb-creator(-kde) (or use the actuall image from https://github.com/CoreELEC/CoreELEC/releases).
 
 ### Put the SD card into your ODROD N2+ and boot
 
-Now follow the installation wizard and activate at least the ssh access,
-then use kodi to make the following settings
+Now follow the installation wizard and activate at least the ssh access, then use kodi to make the following settings
 ```
 - Timezone
 - Keyboard
@@ -373,7 +375,7 @@ lrwxrwxrwx 1 root root  0 Mar 28 05:36 w1-bus-master1 -> ../../../devices/w1-bus
 # 12 To be described later
 
 - nfs mount
-- /etc/vdr/svdrphosts.conf
+- take old host-keys
 
 # 13 Some links
 

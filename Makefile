@@ -1,14 +1,15 @@
 
 PREFIX  = /storage
 
-SYSTEMD_DEST = $(PREFIX)/.config/system.d/
-SYSTEMD_CFG = $(PREFIX)/.config/default
-SCRIPT_DEST = $(PREFIX)/bin
-LIRC_DEST = $(PREFIX)/etc/lirc
-VDR_ETC = $(PREFIX)/UBUNTU/etc/vdr/
-VDR_CONF = $(VDR_ETC)/conf.avail
-VDR_HOME = $(PREFIX)/UBUNTU/var/lib/vdr
+CONFIG       = $(PREFIX)/.config
 
+SYSTEMD_DEST = $(PREFIX)/.config/system.d/
+SYSTEMD_CFG  = $(PREFIX)/.config/default
+SCRIPT_DEST  = $(PREFIX)/bin
+LIRC_DEST    = $(PREFIX)/etc/lirc
+VDR_ETC      = $(PREFIX)/UBUNTU/etc/vdr/
+VDR_CONF     = $(VDR_ETC)/conf.avail
+VDR_HOME     = $(PREFIX)/UBUNTU/var/lib/vdr
 
 install:
 	mkdir -p $(SCRIPT_DEST)
@@ -45,3 +46,4 @@ initial-install: install
 	install --mode=644 -D ./vdr.conf/channels.conf $(VDR_HOME)
 	install --mode=644 -D ./vdr.conf/remote.conf $(VDR_HOME)
 	install --mode=644 -D ./vdr.conf/svdrphosts.conf $(VDR_ETC)
+	install --mode=644 -D ./config/* $(CONFIG)/
